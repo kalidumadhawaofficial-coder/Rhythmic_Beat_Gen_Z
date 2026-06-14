@@ -38,20 +38,15 @@
             line-height: 1.6;
         }
         
-        /* SoundCloud Track List Container */
-        .track-list {
-            margin: 30px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .soundcloud-wrapper {
-            border-radius: 12px;
+        /* SoundCloud Playlist Container - Sleek & High Content */
+        .soundcloud-playlist-wrapper {
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
             border: 1px solid #2a2a3a;
             background: #181824;
-            height: 166px;
+            margin: 30px 0;
+            height: 450px; /* සින්දු 3ම සහ ඉස්සරහට දාන ඒවා ලිස්ට් එකක් විදිහට පේන්න උස හැදුවා */
         }
         
         /* Store Controls & Buttons */
@@ -105,27 +100,17 @@
         <h1>RHYTHMIC BEATS</h1>
         <div class="subtitle">Premium high-performance soundtracks curated for elite athletes, hyper-focus, and late-night drives.</div>
         
-        <!-- 3 TRACKS SHOWING SEPARATELY WITH ACTUAL IDS -->
-        <div class="track-list">
-            
-            <!-- TRACK 1: VENOM STRIKE -->
-            <div class="soundcloud-wrapper">
-                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2009893544&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
-            </div>
-
-            <!-- TRACK 2: MONTAGEM DO GRIND -->
-            <div class="soundcloud-wrapper">
-                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2009893340&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
-            </div>
-
-            <!-- TRACK 3: PROJECT SHADOW -->
-            <div class="soundcloud-wrapper">
-                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2009892556&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
-            </div>
-
+        <div class="soundcloud-playlist-wrapper">
+            <iframe 
+                width="100%" 
+                height="450" 
+                scrolling="no" 
+                frameborder="no" 
+                allow="autoplay" 
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1994119853&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&show_artwork=true">
+            </iframe>
         </div>
         
-        <!-- Action Buttons linked to your Stores -->
         <div class="button-group">
             <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad">🛒 BUY UNTAGGED BEAT PACK ($5)</a>
             <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi">☕ SUPPORT / BUY ON KO-FI</a>
