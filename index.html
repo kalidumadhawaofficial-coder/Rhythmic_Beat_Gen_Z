@@ -4,160 +4,264 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Rhythmic Beats</title>
+    <!-- FontAwesome for Ultra Premium Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Premium Cyberpunk & Dark Aesthetic */
-        * { box-sizing: border-box; }
+        /* Premium Tactical Cyberpunk Aesthetic */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            background-color: #08080c;
+            background-color: #07070a;
+            /* Using the stunning Background Cover Image directly from your repo assets */
+            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.75) 30%, #07070a 95%), url('1000098023.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
             color: #ffffff;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 40px 20px;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
         }
+
         .container {
-            max-width: 600px;
-            margin: 40px auto;
-            background: #111116;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            border: 1px solid #1f1f2e;
+            width: 100%;
+            max-width: 480px;
+            margin: 20px 0;
+            background: rgba(13, 13, 18, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 35px 25px;
+            border-radius: 28px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
         }
+
+        /* LOGO STYLING */
+        .logo-container {
+            margin-bottom: 18px;
+        }
+        .store-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+        }
+
         h1 { 
-            color: #ff2a5f; 
-            font-size: 2.6rem; 
-            margin-bottom: 5px; 
+            color: #ffffff; 
+            font-size: 2.1rem; 
+            margin-bottom: 6px; 
             letter-spacing: 2px;
             font-weight: 800;
+            text-transform: uppercase;
         }
         .subtitle { 
-            color: #71717a; 
-            font-size: 1.05rem; 
-            margin-bottom: 35px;
-            line-height: 1.6;
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        /* Dynamic Track Container */
+        /* CLEAN & STREAMLINED TRACKS */
+        .section-title {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 15px;
+            text-align: left;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 6px;
+        }
+
         #track-list-container {
-            margin: 30px 0;
+            margin: 15px 0 35px 0;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
         .track-card {
-            background: #181824;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #2a2a3a;
+            background: rgba(22, 22, 33, 0.45);
+            padding: 12px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
         .track-card:hover { 
-            border-color: #ff2a5f; 
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 42, 95, 0.1);
+            border-color: rgba(0, 242, 254, 0.3);
+            transform: translateY(-1.5px);
+            background: rgba(30, 30, 45, 0.65);
         }
         .track-name { 
-            font-weight: 700; 
-            font-size: 1.1rem; 
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            text-align: left;
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            color: #f1f5f9;
+            letter-spacing: 0.3px;
         }
         .listen-btn {
             background: #ff5500;
-            padding: 10px 22px;
-            border-radius: 20px;
+            padding: 7px 14px;
+            border-radius: 8px;
             text-decoration: none;
             color: #ffffff;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             transition: background 0.2s;
+            letter-spacing: 0.5px;
         }
         .listen-btn:hover {
             background: #ff7733;
         }
 
-        /* Store Controls & Buttons */
-        .button-group { margin-top: 35px; border-top: 1px solid #1f1f2e; padding-top: 25px; }
+        /* PREMIUM STORES BUTTONS */
+        .button-group { margin-bottom: 30px; }
         .btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             width: 100%;
-            padding: 16px;
-            border-radius: 30px;
+            padding: 14px;
+            border-radius: 14px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
-            margin: 12px 0;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
+            margin: 10px 0;
+            transition: all 0.25s ease;
+            letter-spacing: 0.5px;
         }
         .btn-gumroad {
             background: linear-gradient(45deg, #ff2a5f, #ff5e00);
             color: #ffffff;
-            box-shadow: 0 5px 20px rgba(255, 42, 95, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 42, 95, 0.2);
         }
         .btn-gumroad:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 42, 95, 0.5);
+            box-shadow: 0 6px 20px rgba(255, 42, 95, 0.35);
         }
         .btn-kofi {
             background: #29abe2;
             color: #ffffff;
-            box-shadow: 0 5px 20px rgba(41, 171, 226, 0.3);
+            box-shadow: 0 4px 15px rgba(41, 171, 226, 0.2);
         }
         .btn-kofi:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(41, 171, 226, 0.5);
+            box-shadow: 0 6px 20px rgba(41, 171, 226, 0.35);
         }
-        .btn-soundcloud {
-            background: #1e1e2f;
-            color: #ff5500;
-            border: 1px solid #ff5500;
+
+        /* SOCIAL ICON SECTIONS (ICONS ONLY) */
+        .social-section {
+            margin-top: 25px;
+            text-align: left;
         }
-        .btn-soundcloud:hover {
-            background: #ff5500;
-            color: #ffffff;
-            transform: translateY(-2px);
+        .social-grid {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
         }
-        footer { margin-top: 40px; color: #3f3f46; font-size: 0.85rem; }
+        .social-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #94a3b8;
+            transition: all 0.25s ease;
+        }
+        .social-item i {
+            font-size: 1.5rem;
+        }
+        .social-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Tactical Glow Effects on Hover */
+        .social-item.ig:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 15px rgba(225, 48, 108, 0.2); }
+        .social-item.fb:hover { border-color: #1877f2; color: #1877f2; box-shadow: 0 0 15px rgba(24, 119, 242, 0.2); }
+        .social-item.tt:hover { border-color: #00f2fe; color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); }
+        .social-item.th:hover { border-color: #ffffff; color: #ffffff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
+        .social-item.pin:hover { border-color: #bd081c; color: #bd081c; box-shadow: 0 0 15px rgba(189, 8, 28, 0.2); }
+        .social-item.yt:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
+        .social-item.sc:hover { border-color: #ff5500; color: #ff5500; box-shadow: 0 0 15px rgba(255, 85, 0, 0.2); }
+
+        footer { margin-top: 35px; color: #475569; font-size: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 18px; }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- LOGO SECTION -->
+        <div class="logo-container">
+            <img src="1000098674.webp" alt="Rhythmic Beats Logo" class="store-logo">
+        </div>
+
         <h1>RHYTHMIC BEATS</h1>
-        <div class="subtitle">Premium high-performance soundtracks curated for elite athletes, hyper-focus, and late-night drives.</div>
+        <div class="subtitle">OPERATE IN SILENCE</div>
         
-        <!-- DYNAMIC TRACKS WILL LOAD HERE FROM GIST -->
+        <!-- STORES AREA -->
+        <div class="button-group">
+            <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad"><i class="fa-solid fa-cart-shopping"></i> BUY UNTAGGED BEAT PACK ($5)</a>
+            <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi"><i class="fa-solid fa-cup-straw-notch"></i> SUPPORT / BUY ON KO-FI</a>
+        </div>
+
+        <!-- TRACKS LIST CONTAINER -->
+        <div class="section-title">Latest Tracks</div>
         <div id="track-list-container">
-            <p style="color: #71717a;">Loading Epic Tracks...</p>
+            <p style="color: #64748b; font-size: 0.85rem;">Loading Epic Tracks...</p>
         </div>
         
-        <!-- Action Buttons linked to your Stores -->
-        <div class="button-group">
-            <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad">🛒 BUY UNTAGGED BEAT PACK ($5)</a>
-            <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi">☕ SUPPORT / BUY ON KO-FI</a>
-            <a href="https://soundcloud.com/rhythmic_beat_gen_z" target="_blank" class="btn btn-soundcloud">🟠 LISTEN ON SOUNDCLOUD</a>
+        <!-- FOLLOW ME ON SECTION (ICONS ONLY) -->
+        <div class="social-section">
+            <div class="section-title">Follow Me On</div>
+            <div class="social-grid">
+                <a href="https://www.instagram.com/rythemic_beats_gen_z?igsh=ZWcxeDA2YzRjMnU4" target="_blank" class="social-item ig"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1EKmTesmZm/" target="_blank" class="social-item fb"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@rhythmic_beat_gen?_r=1&_t=ZS-97CWO0NtROW" target="_blank" class="social-item tt"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.threads.com/@rythemic_beats_gen_z" target="_blank" class="social-item th"><i class="fa-brands fa-threads"></i></a>
+                <a href="https://pin.it/6xY4QsdOY" target="_blank" class="social-item pin"><i class="fa-brands fa-pinterest"></i></a>
+            </div>
+        </div>
+
+        <!-- SUBSCRIBE ME SECTION (ICONS ONLY) -->
+        <div class="social-section">
+            <div class="section-title">Subscribe Me</div>
+            <div class="social-grid">
+                <a href="https://youtube.com/@rhythmic_beat_gen_z?si=_J9fQ4I0EeTiWBNX" target="_blank" class="social-item yt"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://soundcloud.com/rhythmic_beat_gen_z" target="_blank" class="social-item sc"><i class="fa-brands fa-soundcloud"></i></a>
+            </div>
         </div>
         
         <footer>© 2026 Rhythmic Beat Gen Z. All Rights Reserved. Securely Monitored.</footer>
     </div>
 
     <script>
-        // Updated to use your new brand-new username URL format safely
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
                 if (!res.ok) throw new Error("Gist data fetch failed");
                 
                 const content = await res.json();
-                
                 const container = document.getElementById('track-list-container');
-                container.innerHTML = ''; // Clear loading text
+                container.innerHTML = ''; 
 
                 content.forEach(track => {
                     const card = document.createElement('div');
@@ -170,7 +274,7 @@
                 });
             } catch (error) {
                 console.error(error);
-                document.getElementById('track-list-container').innerHTML = `<p style="color: #ff2a5f;">Failed to load tracks. Please check Gist.</p>`;
+                document.getElementById('track-list-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load tracks. Please check Gist.</p>`;
             }
         }
         
