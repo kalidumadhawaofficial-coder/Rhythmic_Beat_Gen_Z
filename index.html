@@ -38,15 +38,12 @@
             line-height: 1.6;
         }
         
-        /* SoundCloud Dynamic Track List Container */
-        #player-container {
+        /* SoundCloud Track List Container */
+        .track-list {
             margin: 30px 0;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            min-height: 166px;
-            color: #71717a;
-            font-size: 1.1rem;
         }
         .soundcloud-wrapper {
             border-radius: 12px;
@@ -108,9 +105,24 @@
         <h1>RHYTHMIC BEATS</h1>
         <div class="subtitle">Premium high-performance soundtracks curated for elite athletes, hyper-focus, and late-night drives.</div>
         
-        <!-- DYNAMIC SOUNDCLOUD PLAYER CONTAINER (LOADS FROM GIST) -->
-        <div id="player-container">
-            <p>Loading Epic Beats...</p>
+        <!-- 3 TRACKS SHOWING SEPARATELY WITH ACTUAL IDS -->
+        <div class="track-list">
+            
+            <!-- TRACK 1: VENOM STRIKE -->
+            <div class="soundcloud-wrapper">
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2009893544&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+            </div>
+
+            <!-- TRACK 2: MONTAGEM DO GRIND -->
+            <div class="soundcloud-wrapper">
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2009893340&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+            </div>
+
+            <!-- TRACK 3: PROJECT SHADOW -->
+            <div class="soundcloud-wrapper">
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2009892556&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+            </div>
+
         </div>
         
         <!-- Action Buttons linked to your Stores -->
@@ -124,34 +136,6 @@
     </div>
 
     <script>
-        // ඔයාගේ Gist ID එක මම මෙතනට කෙලින්ම ඇඩ් කළා මචන්
-        const GIST_ID = "64a1f7ed6c5e1105064919c2774d2f01"; 
-
-        async function loadBeats() {
-            try {
-                const res = await fetch(`https://api.github.com/gists/${GIST_ID}`);
-                if (!res.ok) throw new Error("Gist not found");
-                
-                const data = await res.json();
-                const content = JSON.parse(data.files['my-beats.json'].content);
-                
-                const container = document.getElementById('player-container');
-                container.innerHTML = ''; 
-
-                content.forEach(trackId => {
-                    const div = document.createElement('div');
-                    div.className = 'soundcloud-wrapper';
-                    div.innerHTML = `<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${trackId}&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>`;
-                    container.appendChild(div);
-                });
-            } catch (error) {
-                console.error(error);
-                document.getElementById('player-container').innerHTML = `<p style="color: #ff2a5f;">Failed to load player. Please check Gist ID.</p>`;
-            }
-        }
-        
-        loadBeats();
-
         /* MAXIMUM SECURITY SHIELD - ANTI COPY & CLONE */
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
