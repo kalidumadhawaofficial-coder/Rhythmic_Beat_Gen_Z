@@ -5,63 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Rhythmic Beats</title>
     <style>
-        /* Dark Aesthetic Design */
+        /* Premium Cyberpunk & Dark Aesthetic */
+        * {
+            box-sizing: border-box;
+        }
         body {
-            background-color: #0d0d0d;
+            background-color: #08080c;
             color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            padding: 50px 20px;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
+            padding: 40px 20px;
+            display: block;
         }
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #1a1a1a;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid #2d2d2d;
+            max-width: 650px;
+            margin: 40px auto;
+            background: #111116;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            border: 1px solid #1f1f2e;
+            text-align: center;
         }
-        h1 { color: #ff3366; font-size: 2.5rem; margin-bottom: 10px; }
-        p { color: #888; font-size: 1.1rem; }
-        .btn {
+        h1 { 
+            color: #ff2a5f; 
+            font-size: 2.6rem; 
+            margin-bottom: 5px; 
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+        .subtitle { 
+            color: #71717a; 
+            font-size: 1.05rem; 
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+        
+        /* Premium Audio Player Container */
+        .player-box {
+            background: #181824;
+            border: 1px solid #2a2a3a;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .track-info {
+            color: #e4e4e7;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .genre-tag {
+            color: #ffaa00;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
             display: inline-block;
-            background: linear-gradient(45deg, #ff3366, #ff6600);
-            color: white;
-            padding: 15px 35px;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+            outline: none;
+        }
+        
+        /* Store Controls & Buttons */
+        .button-group {
+            margin-top: 30px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: bold;
-            margin-top: 25px;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255,51,102,0.3);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 12px 0;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
         }
-        .btn:hover { transform: scale(1.05); }
+        .btn-gumroad {
+            background: linear-gradient(45deg, #ff2a5f, #ff5e00);
+            color: #ffffff;
+            box-shadow: 0 5px 20px rgba(255, 42, 95, 0.3);
+        }
+        .btn-gumroad:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 42, 95, 0.5);
+        }
+        .btn-soundcloud {
+            background: #1e1e2f;
+            color: #ff5500;
+            border: 1px solid #ff5500;
+        }
+        .btn-soundcloud:hover {
+            background: #ff5500;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            margin-top: 40px;
+            color: #3f3f46;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>RHYTHMIC BEATS</h1>
-        <p>Premium, high-performance beats crafted for elite athletes, creators, and late-night drives.</p>
-        <hr style="border: 0; border-top: 1px solid #2d2d2d; margin: 30px 0;">
-        <p>Our Premium Music Player and Gumroad Store are connecting now...</p>
-        <a href="#" class="btn">Explore Soundcloud</a>
+        <div class="subtitle">Premium high-performance soundtracks curated for elite athletes, hyper-focus, and late-night drives.</div>
+        
+        <div class="player-box">
+            <div class="track-info">⚡ Neon Drive (Preview)</div>
+            <div class="genre-tag">Gen Z Phonk / Aggressive</div>
+            
+            <audio controls controlsList="nodownload">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div class="button-group">
+            <a href="https://gumroad.com" target="_blank" class="btn btn-gumroad">🛒 BUY UNTAGGED BEAT PACK ($5)</a>
+            <a href="https://soundcloud.com" target="_blank" class="btn btn-soundcloud">🟠 LISTEN ON SOUNDCLOUD</a>
+        </div>
+        
+        <footer>© 2026 Rhythmic Beat Gen Z. All Rights Reserved. Securely Monitored.</footer>
     </div>
 
     <script>
-        /* MAXIMUM SECURITY: Anti-Copy & Anti-Phishing Core */
-        // 1. Right Click Block කිරීම (සින්දු හොරකම් කරන්න බෑ)
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        /* MAXIMUM SECURITY SHIELD - ANTI COPY & CLONE */
+        
+        // 1. Block Right-Click (Anti-Audio theft)
+        document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // 2. Keyboard Shortcuts Block කිරීම (F12, Ctrl+U වගේ ඒවා සෙකියුරිටි එකට)
+        // 2. Block Developer Tools & Source View Hotkeys
         document.onkeydown = function(e) {
             if (e.keyCode == 123) return false; // F12
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U (View Source)
         }
     </script>
 </body>
