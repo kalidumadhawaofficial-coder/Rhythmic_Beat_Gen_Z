@@ -38,18 +38,27 @@
             line-height: 1.6;
         }
         
-        /* SoundCloud Responsive Wrapper */
-        .soundcloud-wrapper {
+        /* SoundCloud Dynamic Track List Container */
+        #player-container {
             margin: 30px 0;
-            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: 166px;
+            color: #71717a;
+            font-size: 1.1rem;
+        }
+        .soundcloud-wrapper {
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             border: 1px solid #2a2a3a;
             background: #181824;
+            height: 166px;
         }
         
         /* Store Controls & Buttons */
-        .button-group { margin-top: 30px; }
+        .button-group { margin-top: 35px; }
         .btn {
             display: block;
             width: 100%;
@@ -99,10 +108,9 @@
         <h1>RHYTHMIC BEATS</h1>
         <div class="subtitle">Premium high-performance soundtracks curated for elite athletes, hyper-focus, and late-night drives.</div>
         
-        <!-- LIVE SOUNDCLOUD USER PROFILE PLAYER -->
-        <div class="soundcloud-wrapper">
-            <!-- Embedded SoundCloud Profile Player -->
-            <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/1336449103&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+        <!-- DYNAMIC SOUNDCLOUD PLAYER CONTAINER (LOADS FROM GIST) -->
+        <div id="player-container">
+            <p>Loading Epic Beats...</p>
         </div>
         
         <!-- Action Buttons linked to your Stores -->
@@ -116,6 +124,34 @@
     </div>
 
     <script>
+        // ඔයාගේ Gist ID එක මම මෙතනට කෙලින්ම ඇඩ් කළා මචන්
+        const GIST_ID = "64a1f7ed6c5e1105064919c2774d2f01"; 
+
+        async function loadBeats() {
+            try {
+                const res = await fetch(`https://api.github.com/gists/${GIST_ID}`);
+                if (!res.ok) throw new Error("Gist not found");
+                
+                const data = await res.json();
+                const content = JSON.parse(data.files['my-beats.json'].content);
+                
+                const container = document.getElementById('player-container');
+                container.innerHTML = ''; 
+
+                content.forEach(trackId => {
+                    const div = document.createElement('div');
+                    div.className = 'soundcloud-wrapper';
+                    div.innerHTML = `<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${trackId}&color=%23ff2a5f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>`;
+                    container.appendChild(div);
+                });
+            } catch (error) {
+                console.error(error);
+                document.getElementById('player-container').innerHTML = `<p style="color: #ff2a5f;">Failed to load player. Please check Gist ID.</p>`;
+            }
+        }
+        
+        loadBeats();
+
         /* MAXIMUM SECURITY SHIELD - ANTI COPY & CLONE */
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
