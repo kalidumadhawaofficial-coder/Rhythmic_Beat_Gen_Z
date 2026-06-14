@@ -148,15 +148,13 @@
     </div>
 
     <script>
-        const GIST_ID = "64a1f7ed6c5e1105064919c2774d2f01"; 
-
+        // Updated to use your new brand-new username URL format safely
         async function loadTracks() {
             try {
-                const res = await fetch(`https://api.github.com/gists/${GIST_ID}`);
-                if (!res.ok) throw new Error("Gist not found");
+                const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Gist data fetch failed");
                 
-                const data = await res.json();
-                const content = JSON.parse(data.files['my-beats.json'].content);
+                const content = await res.json();
                 
                 const container = document.getElementById('track-list-container');
                 container.innerHTML = ''; // Clear loading text
@@ -168,13 +166,8 @@
                         <span class="track-name">${track.name}</span>
                         <a href="${track.link}" target="_blank" class="listen-btn">PLAY</a>
                     `;
-                    container.appendChild(ca); // Note: fixed minor internal typo from template to secure rendering
                     container.appendChild(card);
                 });
-                // Clean up double append if template artifact exists
-                const cards = container.querySelectorAll('.track-card');
-                container.innerHTML = '';
-                cards.forEach(c => container.appendChild(c));
             } catch (error) {
                 console.error(error);
                 document.getElementById('track-list-container').innerHTML = `<p style="color: #ff2a5f;">Failed to load tracks. Please check Gist.</p>`;
