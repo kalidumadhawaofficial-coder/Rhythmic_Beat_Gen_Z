@@ -261,11 +261,12 @@
         }
         .market-item .ali-custom-text {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 0.78rem;
-            font-weight: 700;
+            font-size: 0.82rem;
+            font-weight: 800;
             color: #ffffff;
-            opacity: 0.65;
-            letter-spacing: 0.3px;
+            opacity: 0.75;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
             transition: all 0.25s ease;
         }
 
@@ -328,7 +329,6 @@
             </div>
         </div>
 
-        <!-- AFFILIATE MARKETPLACE DYNAMIC SECTION -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
@@ -345,7 +345,7 @@
         let showAllTracks = false;
         let showAllVideos = false;
 
-        // 🔗 Connected directly to your market.txt Gist!
+        // 🔗 Connected to your market.txt Gist Raw URL
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
         async function loadTracks() {
@@ -441,7 +441,7 @@
                         block.target = "_blank";
                     }
 
-                    // Type එක image ද text ද කියලා Gist එකෙන් බලාගෙන Render කරනවා
+                    // Gist එකේ type එක බලාගෙන Text හෝ Image විදිහට Render කරනවා
                     if (market.type === "image") {
                         block.innerHTML = `<img src="${market.source}" alt="${market.name}">`;
                     } else {
