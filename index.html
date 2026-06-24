@@ -519,37 +519,45 @@
             }
         }
 
-        // 🌟 3. FETCH AFFILIATE MARKETS FUNCTION
+        // 🌟 3. FIXED AFFILIATE MARKETS FUNCTION (DIRECT INJECT)
         async function loadAffiliateMarkets() {
-            try {
-                const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/1234238c0de46a9c4c3f3e53265c3a8820eb3724/market.txt"; 
-                
-                const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Market data fetch failed");
-                const markets = await res.json();
-                
-                const container = document.getElementById('market-container');
-                container.innerHTML = ''; 
+            // Cache ප්‍රශ්න නැති වෙන්න කෙලින්ම Wikipedia SVG ලින්ක්ස් දාලා හැදුවා මචං
+            const markets = [
+              {
+                "companyName": "Amazon",
+                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+                "affiliateLink": "#"
+              },
+              {
+                "companyName": "Fiverr",
+                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg",
+                "affiliateLink": "#"
+              },
+              {
+                "companyName": "AliExpress",
+                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/AliExpress_logo.svg",
+                "affiliateLink": "#"
+              }
+            ];
+            
+            const container = document.getElementById('market-container');
+            container.innerHTML = ''; 
 
-                markets.forEach(market => {
-                    const link = document.createElement('a');
-                    link.className = 'market-item';
-                    link.href = market.affiliateLink;
-                    link.innerHTML = `<img src="${market.logoUrl}" alt="${market.companyName}">`;
-                    
-                    link.addEventListener('click', (e) => {
-                        if(market.affiliateLink === '#') {
-                            e.preventDefault(); 
-                            alert(`${market.companyName} Affiliate Link is Coming Soon! 🔥`);
-                        }
-                    });
-
-                    container.appendChild(link);
+            markets.forEach(market => {
+                const link = document.createElement('a');
+                link.className = 'market-item';
+                link.href = market.affiliateLink;
+                link.innerHTML = `<img src="${market.logoUrl}" alt="${market.companyName}">`;
+                
+                link.addEventListener('click', (e) => {
+                    if(market.affiliateLink === '#') {
+                        e.preventDefault(); 
+                        alert(`${market.companyName} Affiliate Link is Coming Soon! 🔥`);
+                    }
                 });
-            } catch (error) {
-                console.error(error);
-                document.getElementById('market-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load markets.</p>`;
-            }
+
+                container.appendChild(link);
+            });
         }
         
         loadTracks();
