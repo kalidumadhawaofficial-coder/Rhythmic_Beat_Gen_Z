@@ -61,7 +61,7 @@
         
         body {
             background-color: #07070a;
-            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('./1000098023.jpg.jpeg');
+            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('1000098023.jpg.jpeg');
             background-size: cover;
             background-position: center top;
             background-attachment: fixed;
@@ -339,7 +339,7 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN (ROBOTIC INTERFACE - HIGH COMPATIBILITY) -->
+    <!-- SYSTEM INTRO SCREEN -->
     <div id="intro-overlay">
         <div class="intro-text" id="typewriter-text"></div>
         <button class="enter-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
@@ -348,7 +348,7 @@
     <!-- MAIN INTERFACE CONTAINER -->
     <div class="container">
         <div class="logo-container">
-            <img src="./1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
+            <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
         </div>
 
         <h1>RHYTHMIC BEATS</h1>
@@ -427,7 +427,6 @@
             }
         }
         
-        // Run typewriter immediately on window load safely
         window.addEventListener('DOMContentLoaded', () => {
             typeWriter();
         });
@@ -440,7 +439,6 @@
                 overlay.style.display = 'none'; 
             }, 500);
             
-            // Play Stable Audio Trigger safely without crashing JavaScript execution
             try {
                 introAudio.play().catch(err => console.log("Audio waiting for stronger interaction"));
             } catch(e) {
