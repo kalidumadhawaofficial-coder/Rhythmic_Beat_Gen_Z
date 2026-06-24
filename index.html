@@ -21,7 +21,7 @@
             box-sizing: border-box;
         }
         
-        /* Explicit Thick Outline Frame Container for Mobile Viewports */
+        /* Fixed Border Box explicitly tailored for Mobile Viewports */
         .intro-frame {
             border: 3px solid #00f2fe !important; 
             padding: 45px 25px;
@@ -374,7 +374,7 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN WITH FIXED FRAME BOX -->
+    <!-- SYSTEM INTRO SCREEN WITH EXPLICIT OUTLINE FRAME BOX -->
     <div id="intro-overlay">
         <div class="intro-frame">
             <!-- 1. Logo On Top -->
@@ -448,7 +448,7 @@
     </div>
 
     <!-- =========================================
-         JAVASCRIPT ENGINE WITH VISUAL SORT & PERFECT DEEP MALE VOICE
+         JAVASCRIPT ENGINE (DEFINITIVE CONSOLE LOCK)
     ========================================= -->
     <script>
         let cachedTracks = [];
@@ -457,6 +457,10 @@
         let showAllVideos = false;
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
+
+        // REAL HIGH-END AUDIO FILE FOR AUTHENTIC DEEP MALE VOICE (Bypasses text-to-speech engine blockages)
+        const heavyMaleVoice = new Audio("https://audio.jofre.de/tts.php?text=Rhythmic+Beats+Presents.+Operate+in+silence.&lang=en-US&voice=Joey");
+        heavyMaleVoice.volume = 1.0;
 
         // Typewriter Effect
         const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
@@ -470,64 +474,31 @@
         }
         window.addEventListener('DOMContentLoaded', typeWriter);
 
-        // ASYNCHRONOUS SYSTEM NATIVE VOICE PRELOAD ENGINE
-        let systemVoices = [];
-        function preloadVoices() {
-            if ('speechSynthesis' in window) {
-                systemVoices = window.speechSynthesis.getVoices();
-            }
-        }
-        preloadVoices();
-        if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
-            window.speechSynthesis.onvoiceschanged = preloadVoices;
-        }
-
-        // START INTERFACE WITH COMPREHENSIVE NATIVE HARD BARITONE VOICE TRACKING
+        // INITIALIZE EXPERIENCE DISPATCHER
         function startExperience() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Flush queue
-                const baritoneUtterance = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
-                
-                baritoneUtterance.lang = 'en-US';
-                baritoneUtterance.rate = 0.72; // Slow, hard and impactful heavy tempo
-                baritoneUtterance.pitch = 0.1; // Deepest chest-voice frequency configuration 
-                baritoneUtterance.volume = 1.0;
-
-                if (systemVoices.length === 0) systemVoices = window.speechSynthesis.getVoices();
-                
-                // Absolute structural checking targeting deep male assets natively available on systems
-                const premiumMaleVoice = systemVoices.find(v => 
-                    v.name.toLowerCase().includes('microsoft david') || 
-                    v.name.toLowerCase().includes('google us english male') || 
-                    v.name.toLowerCase().includes('david') || 
-                    v.name.toLowerCase().includes('male')
-                );
-                
-                if (premiumMaleVoice) baritoneUtterance.voice = premiumMaleVoice;
-                window.speechSynthesis.speak(baritoneUtterance);
-            }
+            try {
+                heavyMaleVoice.play().catch(e => console.log("Audio pipeline requires active viewport touch."));
+            } catch (err) { console.log(err); }
 
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
 
-        // LATEST CHRONOLOGICAL SORT & DISPATCH PIPELINES
+        // STRICT CHRONOLOGICAL LATEST ORDER FIX
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
                 const content = await res.json();
                 
+                // Parsing elements into UNIX timestamps for sorting execution loop
                 cachedTracks = content.sort((a, b) => {
                     const timeA = a.timestamp ? new Date(a.timestamp).getTime() : (Number(a.time) || 0);
                     const timeB = b.timestamp ? new Date(b.timestamp).getTime() : (Number(b.time) || 0);
                     return timeB - timeA;
                 });
-                
                 renderTracks();
-            } catch (error) {
-                document.getElementById('track-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Tracks loaded.</p>`;
-            }
+            } catch (e) { console.error(e); }
         }
 
         function renderTracks() {
@@ -557,13 +528,11 @@
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt?nocache=${new Date().getTime()}`);
                 const content = await res.json();
                 
+                // Absolute structural layout sorting for video assets
                 cachedVideos = content.sort((a, b) => (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0));
                 if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
-                
                 renderVideos();
-            } catch (error) {
-                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos loaded.</p>`;
-            }
+            } catch (e) { console.error(e); }
         }
 
         function setMainVideo(id) { 
@@ -579,8 +548,11 @@
             videosToDisplay.forEach(video => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
-                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
-                card.addEventListener('click', () => { setMainVideo(video.videoId); });
+                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb" alt="thumbnail"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
+                card.addEventListener('click', () => { 
+                    setMainVideo(video.videoId); 
+                    document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                });
                 container.appendChild(card);
             });
             
@@ -597,6 +569,7 @@
             const container = document.getElementById('market-container');
             try {
                 const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Markets system error");
                 const markets = await res.json();
                 container.innerHTML = '';
 
@@ -622,7 +595,7 @@
         loadVideos();
         loadAffiliateMarkets();
 
-        // Anti-Inspect Security
+        // Anti-Inspect Security Shields
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
             if (e.keyCode == 123) return false;
