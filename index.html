@@ -246,23 +246,35 @@
         .social-item.yt:hover { border-color: #ff0000; color: #ff0000; }
         .social-item.sc:hover { border-color: #ff5500; color: #ff5500; }
 
-        /* ONE-LINE FLEXBOX FOR CERTIFIED GEARS */
+        /* DYNAMIC FLEXBOX FOR CERTIFIED GEARS */
         .affiliate-market-section { margin-top: 25px; text-align: left; }
-        .market-grid { display: flex; justify-content: flex-start; gap: 12px; margin-top: 12px; }
+        .market-grid { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+        
         .market-item {
             display: flex; align-items: center; justify-content: center;
             background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05);
-            width: 80px; height: 50px; border-radius: 14px; text-decoration: none; transition: all 0.25s ease; cursor: pointer; padding: 5px;
+            width: 90px; height: 50px; border-radius: 14px; text-decoration: none; transition: all 0.25s ease; cursor: pointer; padding: 5px;
         }
         .market-item img {
             max-width: 85%; max-height: 22px; object-fit: contain;
             filter: brightness(0) invert(1) opacity(0.65); transition: all 0.25s ease;
         }
+        .market-item .ali-custom-text {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #ffffff;
+            opacity: 0.65;
+            letter-spacing: 0.3px;
+            transition: all 0.25s ease;
+        }
+
         .market-item:hover {
             background: rgba(255, 255, 255, 0.08); transform: translateY(-3px);
             border-color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
         }
         .market-item:hover img { filter: brightness(0) invert(1) opacity(1); }
+        .market-item:hover .ali-custom-text { opacity: 1; color: #ff5500; }
 
         footer { margin-top: 35px; color: #475569; font-size: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 18px; }
     </style>
@@ -316,15 +328,11 @@
             </div>
         </div>
 
-        <!-- AFFILIATE MARKETPLACE SECTION -->
+        <!-- AFFILIATE MARKETPLACE DYNAMIC SECTION -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
-                <a href="#" class="market-item" id="amazon-link"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></a>
-                <a href="#" class="market-item" id="fiverr-link"><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg" alt="Fiverr"></a>
-                
-                <!-- 100% WORKING BRAND NEW HIGH-RES IMAGE LINK -->
-                <a href="#" class="market-item" id="ali-link"><img src="https://images.squarespace-cdn.com/content/v1/5bc4cc4b704ca516b677a284/1569420658402-H16TIDUCDO4QMT7N2L24/aliexpress.png" alt="AliExpress" style="max-height: 18px;"></a>
+                <p style="color: #64748b; font-size: 0.85rem;">Loading Markets...</p>
             </div>
         </div>
         
@@ -337,15 +345,18 @@
         let showAllTracks = false;
         let showAllVideos = false;
 
+        // 🔗 Connected directly to your market.txt Gist!
+        const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
+
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Gist data fetch failed");
+                if (!res.ok) throw new Error("Gist failed");
                 const content = await res.json();
                 cachedTracks = content.sort((a, b) => (b.timestamp || b.time) - (a.timestamp || a.time));
                 renderTracks();
             } catch (error) {
-                document.getElementById('track-list-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load tracks.</p>`;
+                document.getElementById('track-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Tracks loaded.</p>`;
             }
         }
 
@@ -373,13 +384,13 @@
             try {
                 const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
                 const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Video Gist data fetch failed");
+                if (!res.ok) throw new Error("Video Gist failed");
                 const content = await res.json();
                 cachedVideos = content.sort((a, b) => b.timestamp - a.timestamp);
                 if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
                 renderVideos();
             } catch (error) {
-                document.getElementById('video-list-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load videos.</p>`;
+                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos loaded.</p>`;
             }
         }
 
@@ -406,12 +417,48 @@
             }
         }
 
-        document.querySelectorAll('.market-item').forEach(item => {
-            item.addEventListener('click', (e) => { e.preventDefault(); alert('Affiliate Link is Coming Soon! 🔥'); });
-        });
+        // DYNAMICALLY LOAD AFFILIATE MARKETS FROM GIST
+        async function loadAffiliateMarkets() {
+            const container = document.getElementById('market-container');
+            try {
+                const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Markets fetch failed");
+                const markets = await res.json();
+                container.innerHTML = '';
+
+                markets.forEach(market => {
+                    const block = document.createElement('a');
+                    block.className = 'market-item';
+                    block.href = market.link;
+                    
+                    // ලින්ක් එක "#" හෝ හිස් නම් "Coming Soon!" ඇලර්ට් එක වදිනවා
+                    if (market.link === "#" || market.link === "") {
+                        block.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            alert(`${market.name} Affiliate Link is Coming Soon! 🔥`);
+                        });
+                    } else {
+                        block.target = "_blank";
+                    }
+
+                    // Type එක image ද text ද කියලා Gist එකෙන් බලාගෙන Render කරනවා
+                    if (market.type === "image") {
+                        block.innerHTML = `<img src="${market.source}" alt="${market.name}">`;
+                    } else {
+                        block.innerHTML = `<span class="ali-custom-text">${market.source}</span>`;
+                    }
+                    container.appendChild(block);
+                });
+
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets loaded.</p>`;
+            }
+        }
         
         loadTracks();
         loadVideos();
+        loadAffiliateMarkets();
 
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
