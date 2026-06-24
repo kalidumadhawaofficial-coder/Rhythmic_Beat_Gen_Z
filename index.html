@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Premium Rhythmic Beats</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* =========================================
-           EXTRA PREMIUM INTRO OVERLAY WITH BOX
+           STRICT MOBILE INTRO OVERLAY WITH VISIBLE FRAME
         ========================================= */
         #intro-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: #07070a;
             z-index: 99999;
             display: flex;
@@ -22,36 +19,33 @@
             align-items: center;
             opacity: 1;
             transition: opacity 0.5s ease;
-            padding: 20px;
+            padding: 15px;
             box-sizing: border-box;
         }
         
-        /* The Professional Single Frame Box */
+        /* Explicit Thick Outline Frame Container for Mobile Viewports */
         .intro-frame {
-            border: 2px solid #00f2fe;
-            padding: 45px 30px;
+            border: 3px solid #00f2fe !important; /* Visible Thick Cyan Frame Box */
+            padding: 45px 25px;
             border-radius: 24px;
-            background: rgba(13, 13, 18, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: #0d0d12 !important;
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 380px;
-            box-shadow: 0 0 50px rgba(0, 242, 254, 0.3), inset 0 0 20px rgba(0, 242, 254, 0.1);
-            text-align: center;
+            max-width: 340px; /* Forces configuration to stay contained inside mobile screen */
+            box-shadow: 0 0 45px rgba(0, 242, 254, 0.3), inset 0 0 15px rgba(0, 242, 254, 0.1);
             box-sizing: border-box;
         }
 
-        /* Logo inside Frame */
         .intro-logo {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #00f2fe;
             margin-bottom: 35px; 
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
             animation: pulseGlow 2s infinite ease-in-out;
         }
 
@@ -61,34 +55,30 @@
             100% { box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); transform: scale(1); }
         }
 
-        /* Initialize System Button */
         .intro-btn {
             background: transparent;
             border: 2px solid #00f2fe;
             color: #00f2fe;
-            padding: 15px 40px;
+            padding: 15px 0;
             border-radius: 12px;
             cursor: pointer;
             font-weight: 800;
             font-size: 0.95rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
             font-family: 'Segoe UI', Roboto, sans-serif;
             margin-bottom: 30px; 
             display: block;
-            width: 100%;
+            width: 100%; 
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
         .intro-btn:hover {
             background: #00f2fe;
             color: #07070a;
             box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
-            transform: scale(1.02);
         }
 
-        /* Professional Cinematic Bottom Text */
         .intro-subtext {
             color: #94a3b8;
             font-size: 0.72rem;
@@ -98,7 +88,6 @@
             text-align: center;
             font-family: 'Segoe UI', Roboto, sans-serif;
             min-height: 40px;
-            opacity: 0.9;
             text-shadow: 0 0 8px rgba(0, 242, 254, 0.4); 
             line-height: 1.8;
         }
@@ -387,7 +376,7 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN (PREMIUM BOX DESIGN) -->
+    <!-- SYSTEM INTRO SCREEN WITH EXPLICIT OUTLINE FRAME BOX -->
     <div id="intro-overlay">
         <div class="intro-frame">
             <!-- 1. Logo On Top -->
@@ -461,7 +450,7 @@
     </div>
 
     <!-- =========================================
-         JAVASCRIPT ENGINE
+         JAVASCRIPT CORE IMPLEMENTATION
     ========================================= -->
     <script>
         let cachedTracks = [];
@@ -471,7 +460,7 @@
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
-        // TYPEWRITER EFFECT WITH CINEMATIC SPACING
+        // Typewriter Effect
         const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
         let idx = 0;
         function typeWriter() {
@@ -483,37 +472,40 @@
         }
         window.addEventListener('DOMContentLoaded', typeWriter);
 
-        // SECURE ASYNCHRONOUS SYSTEM VOICE PRE-LOADER
-        let systemVoices = [];
-        function loadSystemVoices() {
+        // Native Voices Preloader Setup
+        let nativeVoices = [];
+        function getVoicesSystem() {
             if ('speechSynthesis' in window) {
-                systemVoices = window.speechSynthesis.getVoices();
+                nativeVoices = window.speechSynthesis.getVoices();
             }
         }
-        loadSystemVoices();
+        getVoicesSystem();
         if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
-            window.speechSynthesis.onvoiceschanged = loadSystemVoices;
+            window.speechSynthesis.onvoiceschanged = getVoicesSystem;
         }
 
-        // START SYSTEM INTERFACE WITH REAL HARD DEEP BARITONE VOICE
+        // HARD DEEP AUTHORITATIVE BARITONE MALE VOICE ENGINE
         function startExperience() {
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Flush queue
-                const msg = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
-                msg.lang = 'en-US';
-                msg.rate = 0.72; // Heavy slowed down speed
-                msg.pitch = 0.1; // Maximum deep male chest voice pitch
-                msg.volume = 1.0;
-
-                if (systemVoices.length === 0) systemVoices = window.speechSynthesis.getVoices();
+                window.speechSynthesis.cancel();
+                const heavyUtterance = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
+                heavyUtterance.lang = 'en-US';
+                heavyUtterance.rate = 0.70; 
+                heavyUtterance.pitch = 0.1; 
+                heavyUtterance.volume = 1.0;
                 
-                // Prioritize best heavy male engines (Google Male, David, Microsoft Male)
-                const deepVoice = systemVoices.find(v => v.name.toLowerCase().includes('google us english male') || 
-                                                         v.name.toLowerCase().includes('male') || 
-                                                         v.name.toLowerCase().includes('david') ||
-                                                         v.name.toLowerCase().includes('microsoft david'));
-                if (deepVoice) msg.voice = deepVoice;
-                window.speechSynthesis.speak(msg);
+                if (nativeVoices.length === 0) nativeVoices = window.speechSynthesis.getVoices();
+                
+                // Explicit cross-platform mobile fallback matching for male systems
+                const hardVoiceProfile = nativeVoices.find(v => 
+                    v.name.toLowerCase().includes('male') || 
+                    v.name.toLowerCase().includes('google us english') || 
+                    v.name.toLowerCase().includes('david') || 
+                    v.lang.startsWith('en-')
+                );
+                
+                if (hardVoiceProfile) heavyUtterance.voice = hardVoiceProfile;
+                window.speechSynthesis.speak(heavyUtterance);
             }
 
             const overlay = document.getElementById('intro-overlay');
@@ -521,19 +513,20 @@
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
 
-        // DYNAMIC CONTENT LOGIC WITH CHRONOLOGICAL SORTING
+        // CHRONOLOGICAL DATETIME SORT ENGINES
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Gist failed");
                 const content = await res.json();
                 
-                // SECURED SORT: Newest beats on top
-                cachedTracks = content.sort((a, b) => (b.timestamp || b.time) - (a.timestamp || a.time));
+                // Parsing Date strings into unix time integers to guarantee strict sorting
+                cachedTracks = content.sort((a, b) => {
+                    const timeA = a.timestamp ? new Date(a.timestamp).getTime() : (Number(a.time) || 0);
+                    const timeB = b.timestamp ? new Date(b.timestamp).getTime() : (Number(b.time) || 0);
+                    return timeB - timeA;
+                });
                 renderTracks();
-            } catch (error) {
-                document.getElementById('track-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Tracks secured.</p>`;
-            }
+            } catch (e) { console.error(e); }
         }
 
         function renderTracks() {
@@ -560,18 +553,13 @@
 
         async function loadVideos() {
             try {
-                const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
-                const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Video Gist failed");
+                const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt?nocache=${new Date().getTime()}`);
                 const content = await res.json();
                 
-                // SECURED SORT: Latest videos on top
-                cachedVideos = content.sort((a, b) => b.timestamp - a.timestamp);
+                cachedVideos = content.sort((a, b) => (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0));
                 if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
                 renderVideos();
-            } catch (error) {
-                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos secured.</p>`;
-            }
+            } catch (e) { console.error(e); }
         }
 
         function setMainVideo(id) { 
@@ -608,7 +596,6 @@
             const container = document.getElementById('market-container');
             try {
                 const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Markets fetch failed");
                 const markets = await res.json();
                 container.innerHTML = '';
 
@@ -635,11 +622,7 @@
                     }
                     container.appendChild(block);
                 });
-
-            } catch (error) {
-                console.error(error);
-                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets secured.</p>`;
-            }
+            } catch (error) { console.error(error); }
         }
         
         loadTracks();
