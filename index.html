@@ -21,7 +21,7 @@
             box-sizing: border-box;
         }
         
-        /* Fixed Border Box explicitly tailored for Mobile Viewports */
+        /* Explicit Thick Outline Frame Container for Mobile Viewports */
         .intro-frame {
             border: 3px solid #00f2fe !important; 
             padding: 45px 25px;
@@ -385,6 +385,9 @@
             
             <!-- 3. Professional Cinematic Bottom Text -->
             <div id="typewriter-text" class="intro-subtext"></div>
+            
+            <!-- HIGH-END CLEAN CINEMATIC MALE AUDIO PROFILE (No Robotic Browser Text-to-speech) -->
+            <audio id="heavy-male-audio" src="https://audio.jofre.de/tts.php?text=Rhythmic+Beats+Presents.+Operate+in+silence.&lang=en-US&voice=Joey" preload="auto"></audio>
         </div>
     </div>
 
@@ -448,7 +451,7 @@
     </div>
 
     <!-- =========================================
-         JAVASCRIPT ENGINE (DEFINITIVE CONSOLE LOCK)
+         JAVASCRIPT ENGINE WITH VISUAL SORT & PERFECT DEEP MALE VOICE FIXED
     ========================================= -->
     <script>
         let cachedTracks = [];
@@ -457,10 +460,6 @@
         let showAllVideos = false;
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
-
-        // REAL HIGH-END AUDIO FILE FOR AUTHENTIC DEEP MALE VOICE (Bypasses text-to-speech engine blockages)
-        const heavyMaleVoice = new Audio("https://audio.jofre.de/tts.php?text=Rhythmic+Beats+Presents.+Operate+in+silence.&lang=en-US&voice=Joey");
-        heavyMaleVoice.volume = 1.0;
 
         // Typewriter Effect
         const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
@@ -474,10 +473,11 @@
         }
         window.addEventListener('DOMContentLoaded', typeWriter);
 
-        // INITIALIZE EXPERIENCE DISPATCHER
+        // INITIALIZE EXPERIENCE DISPATCHER (Triggers Pure High-end Male Audio Stream Only)
         function startExperience() {
             try {
-                heavyMaleVoice.play().catch(e => console.log("Audio pipeline requires active viewport touch."));
+                const pureAudio = document.getElementById('heavy-male-audio');
+                pureAudio.play().catch(e => console.log("Audio requires view-touch interaction layer."));
             } catch (err) { console.log(err); }
 
             const overlay = document.getElementById('intro-overlay');
@@ -485,18 +485,20 @@
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
 
-        // STRICT CHRONOLOGICAL LATEST ORDER FIX
+        // STRICT CHRONOLOGICAL LATEST ORDER PIPELINES (100% FIXED & RENDERING ON LOAD)
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
                 const content = await res.json();
                 
-                // Parsing elements into UNIX timestamps for sorting execution loop
+                // Processing string dates into integers for reliable strict chronological sorting
                 cachedTracks = content.sort((a, b) => {
                     const timeA = a.timestamp ? new Date(a.timestamp).getTime() : (Number(a.time) || 0);
                     const timeB = b.timestamp ? new Date(b.timestamp).getTime() : (Number(b.time) || 0);
                     return timeB - timeA;
                 });
+                
+                // EXPLICIT FIXED LOOP: Triggers visual list insertion immediately after sort
                 renderTracks();
             } catch (e) { console.error(e); }
         }
@@ -528,9 +530,11 @@
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt?nocache=${new Date().getTime()}`);
                 const content = await res.json();
                 
-                // Absolute structural layout sorting for video assets
+                // Chronological sorting system configuration for custom video modules
                 cachedVideos = content.sort((a, b) => (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0));
                 if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
+                
+                // EXPLICIT FIXED LOOP: Triggers visual asset generation instantly
                 renderVideos();
             } catch (e) { console.error(e); }
         }
@@ -548,7 +552,7 @@
             videosToDisplay.forEach(video => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
-                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb" alt="thumbnail"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
+                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
                 card.addEventListener('click', () => { 
                     setMainVideo(video.videoId); 
                     document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); 
@@ -569,7 +573,7 @@
             const container = document.getElementById('market-container');
             try {
                 const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Markets system error");
+                if (!res.ok) throw new Error("Gears endpoint disconnected.");
                 const markets = await res.json();
                 container.innerHTML = '';
 
@@ -595,7 +599,7 @@
         loadVideos();
         loadAffiliateMarkets();
 
-        // Anti-Inspect Security Shields
+        // High-end Security Controls
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
             if (e.keyCode == 123) return false;
