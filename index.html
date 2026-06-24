@@ -14,7 +14,7 @@
             width: 100%;
             height: 100%;
             background: #07070a;
-            z-index: 99999; /* Higher priority to cover everything */
+            z-index: 99999;
             display: flex !important;
             flex-direction: column !important;
             justify-content: center !important;
@@ -26,15 +26,15 @@
             box-sizing: border-box;
         }
         
-        /* Large Logo on Top */
+        /* 1. Large Logo on Top */
         .intro-premium-logo {
-            width: 140px !important; /* Made it slightly bigger for the layout */
-            height: 140px !important;
+            width: 130px !important;
+            height: 130px !important;
             border-radius: 50% !important;
             object-fit: cover !important;
             border: 2px solid #00f2fe !important;
             box-shadow: 0 0 30px rgba(0, 242, 254, 0.4) !important;
-            margin-bottom: 35px !important; /* Pushes the button down */
+            margin-bottom: 30px !important;
             display: block !important;
             animation: pulseGlow 2s infinite ease-in-out;
         }
@@ -45,12 +45,12 @@
             100% { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); transform: scale(1); }
         }
 
-        /* Sleek Cyberpunk Action Button in the Middle */
+        /* 2. Sleek Cyberpunk Action Button in the Middle */
         .enter-btn-new {
             background: transparent !important;
             border: 2px solid #00f2fe !important;
             color: #00f2fe !important;
-            padding: 16px 45px !important;
+            padding: 15px 40px !important;
             border-radius: 14px !important;
             cursor: pointer !important;
             font-weight: 800 !important;
@@ -60,7 +60,7 @@
             transition: all 0.3s ease !important;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.15) !important;
             font-family: 'Segoe UI', Roboto, sans-serif !important;
-            margin-bottom: 25px !important; /* Pushes the subtext down */
+            margin-bottom: 25px !important;
             display: block !important;
         }
         .enter-btn-new:hover {
@@ -70,7 +70,7 @@
             transform: scale(1.05);
         }
 
-        /* Clean Professional Small Sub-text at the Bottom */
+        /* 3. Clean Professional Small Sub-text at the Bottom */
         .intro-subtext-new {
             color: #64748b !important;
             font-size: 0.75rem !important;
@@ -366,7 +366,7 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN (STRICT FLEX LAYOUT) -->
+    <!-- SYSTEM INTRO SCREEN (FIXED STRUCTURE) -->
     <div id="intro-overlay">
         <!-- 1. Top Section: Logo -->
         <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="intro-premium-logo">
@@ -448,7 +448,6 @@
         const introAudio = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav");
         introAudio.volume = 0.75;
 
-        // Upgraded Typewriter Script targeting new ID
         const text = "RHYTHMIC BEATS PRESENTS...";
         let idx = 0;
         function typeWriter() {
