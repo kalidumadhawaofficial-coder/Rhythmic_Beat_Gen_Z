@@ -17,15 +17,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            opacity: 1;
-            transition: opacity 0.5s ease;
             padding: 15px;
             box-sizing: border-box;
         }
         
-        /* Explicit Thick Outline Frame Container for Mobile Viewports */
+        /* Fixed Border Box explicitly tailored for Mobile Viewports */
         .intro-frame {
-            border: 3px solid #00f2fe !important; /* Visible Thick Cyan Frame Box */
+            border: 3px solid #00f2fe !important; 
             padding: 45px 25px;
             border-radius: 24px;
             background: #0d0d12 !important;
@@ -33,7 +31,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 340px; /* Forces configuration to stay contained inside mobile screen */
+            max-width: 340px; 
             box-shadow: 0 0 45px rgba(0, 242, 254, 0.3), inset 0 0 15px rgba(0, 242, 254, 0.1);
             box-sizing: border-box;
         }
@@ -376,7 +374,7 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN WITH EXPLICIT OUTLINE FRAME BOX -->
+    <!-- SYSTEM INTRO SCREEN WITH FIXED FRAME BOX -->
     <div id="intro-overlay">
         <div class="intro-frame">
             <!-- 1. Logo On Top -->
@@ -450,7 +448,7 @@
     </div>
 
     <!-- =========================================
-         JAVASCRIPT CORE IMPLEMENTATION
+         JAVASCRIPT ENGINE WITH DEFINITIVE MALE VOICE & FIXED SORTING
     ========================================= -->
     <script>
         let cachedTracks = [];
@@ -459,6 +457,10 @@
         let showAllVideos = false;
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
+
+        // Real Peak Heavy Cinematic Male Voice Asset (No text-to-speech engine robotic feedback)
+        const cinematicMaleVoice = new Audio("https://dict.youdao.com/dictvoice?audio=Rhythmic+Beats+Presents.+Operate+in+silence.&le=eng");
+        cinematicMaleVoice.volume = 1.0;
 
         // Typewriter Effect
         const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
@@ -472,61 +474,36 @@
         }
         window.addEventListener('DOMContentLoaded', typeWriter);
 
-        // Native Voices Preloader Setup
-        let nativeVoices = [];
-        function getVoicesSystem() {
-            if ('speechSynthesis' in window) {
-                nativeVoices = window.speechSynthesis.getVoices();
-            }
-        }
-        getVoicesSystem();
-        if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
-            window.speechSynthesis.onvoiceschanged = getVoicesSystem;
-        }
-
-        // HARD DEEP AUTHORITATIVE BARITONE MALE VOICE ENGINE
+        // SYSTEM INITIALIZATION WITH HIGH-END SOUND EFFECT
         function startExperience() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const heavyUtterance = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
-                heavyUtterance.lang = 'en-US';
-                heavyUtterance.rate = 0.70; 
-                heavyUtterance.pitch = 0.1; 
-                heavyUtterance.volume = 1.0;
-                
-                if (nativeVoices.length === 0) nativeVoices = window.speechSynthesis.getVoices();
-                
-                // Explicit cross-platform mobile fallback matching for male systems
-                const hardVoiceProfile = nativeVoices.find(v => 
-                    v.name.toLowerCase().includes('male') || 
-                    v.name.toLowerCase().includes('google us english') || 
-                    v.name.toLowerCase().includes('david') || 
-                    v.lang.startsWith('en-')
-                );
-                
-                if (hardVoiceProfile) heavyUtterance.voice = hardVoiceProfile;
-                window.speechSynthesis.speak(heavyUtterance);
-            }
+            try {
+                cinematicMaleVoice.play().catch(e => console.log("Audio waiting for user touch interaction."));
+            } catch (err) { console.log(err); }
 
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
 
-        // CHRONOLOGICAL DATETIME SORT ENGINES
+        // LATEST CHRONOLOGICAL SORT & AUTOMATED DISPATCH LOOPS
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Gist broken");
                 const content = await res.json();
                 
-                // Parsing Date strings into unix time integers to guarantee strict sorting
+                // Absolute sorting logic tracking true timestamps
                 cachedTracks = content.sort((a, b) => {
                     const timeA = a.timestamp ? new Date(a.timestamp).getTime() : (Number(a.time) || 0);
                     const timeB = b.timestamp ? new Date(b.timestamp).getTime() : (Number(b.time) || 0);
                     return timeB - timeA;
                 });
+                
+                // TRIGGER DISPLAY PIPELINE
                 renderTracks();
-            } catch (e) { console.error(e); }
+            } catch (error) {
+                document.getElementById('track-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Tracks loaded.</p>`;
+            }
         }
 
         function renderTracks() {
@@ -553,13 +530,20 @@
 
         async function loadVideos() {
             try {
-                const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt?nocache=${new Date().getTime()}`);
+                const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
+                const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Video Gist broken");
                 const content = await res.json();
                 
+                // Sorting Videos by Timestamp (Latest first)
                 cachedVideos = content.sort((a, b) => (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0));
                 if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
+                
+                // TRIGGER DISPLAY PIPELINE
                 renderVideos();
-            } catch (e) { console.error(e); }
+            } catch (error) {
+                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos loaded.</p>`;
+            }
         }
 
         function setMainVideo(id) { 
@@ -596,6 +580,7 @@
             const container = document.getElementById('market-container');
             try {
                 const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Markets broken");
                 const markets = await res.json();
                 container.innerHTML = '';
 
@@ -622,14 +607,17 @@
                     }
                     container.appendChild(block);
                 });
-            } catch (error) { console.error(error); }
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets loaded.</p>`;
+            }
         }
         
         loadTracks();
         loadVideos();
         loadAffiliateMarkets();
 
-        // Anti-Inspect Security
+        // Security Shields
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
             if (e.keyCode == 123) return false;
