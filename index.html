@@ -49,17 +49,17 @@
             background: transparent;
             border: 2px solid #00f2fe;
             color: #00f2fe;
-            padding: 15px 40px;
-            border-radius: 12px;
+            padding: 14px 35px;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: 700;
-            font-size: 0.95rem;
+            font-weight: 800;
+            font-size: 0.9rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
             font-family: 'Segoe UI', Roboto, sans-serif;
-            margin-bottom: 25px; /* Space between button and text */
+            margin-bottom: 20px; /* Space between button and text */
         }
         .intro-btn:hover {
             background: #00f2fe;
@@ -71,14 +71,15 @@
         /* 3. Small Text Below Button */
         .intro-subtext {
             color: #64748b;
-            font-size: 0.75rem;
-            letter-spacing: 4px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
             font-weight: 600;
             text-transform: uppercase;
             text-align: center;
             font-family: 'Segoe UI', Roboto, sans-serif;
             min-height: 20px;
             opacity: 0.8;
+            line-height: 1.6;
         }
 
         /* =========================================
@@ -375,7 +376,7 @@
         <!-- 2. Button In The Middle -->
         <button class="intro-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
         
-        <!-- 3. Subtext Below Button -->
+        <!-- 3. Subtext Below Button (Updated text as requested) -->
         <div id="typewriter-text" class="intro-subtext"></div>
     </div>
 
@@ -451,12 +452,8 @@
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
-        // Premium Sci-Fi Sound Effect
-        const introAudio = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav");
-        introAudio.volume = 0.75;
-
-        // Typewriter Effect
-        const text = "RHYTHMIC BEATS PRESENTS...";
+        // TYPEWRITER EFFECT WITH THE FULL TEXT REQUESTED
+        const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE";
         let idx = 0;
         function typeWriter() {
             if (idx < text.length) {
@@ -470,7 +467,7 @@
             typeWriter();
         });
 
-        // Initialize button function
+        // SYSTEM INITIALIZATION WITH ROBOTIC VOICE
         function startExperience() {
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
@@ -478,10 +475,13 @@
                 overlay.style.display = 'none'; 
             }, 500);
             
-            try {
-                introAudio.play().catch(err => console.log("Audio play prevented"));
-            } catch(e) {
-                console.log("Audio failed");
+            // Restored the original Robotic Voice Engine
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
+                msg.rate = 0.85; 
+                msg.pitch = 0.4; // Lower pitch for cool robotic vibe
+                window.speechSynthesis.speak(msg);
             }
         }
 
