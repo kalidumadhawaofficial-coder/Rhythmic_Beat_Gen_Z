@@ -14,25 +14,28 @@
             width: 100%;
             height: 100%;
             background: #07070a;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            z-index: 99999; /* Higher priority to cover everything */
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
             opacity: 1;
             visibility: visible;
             transition: opacity 0.5s ease, visibility 0.5s ease;
             padding: 20px;
+            box-sizing: border-box;
         }
         
-        .intro-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #00f2fe;
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
-            margin-bottom: 40px;
+        /* Large Logo on Top */
+        .intro-premium-logo {
+            width: 140px !important; /* Made it slightly bigger for the layout */
+            height: 140px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            border: 2px solid #00f2fe !important;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.4) !important;
+            margin-bottom: 35px !important; /* Pushes the button down */
+            display: block !important;
             animation: pulseGlow 2s infinite ease-in-out;
         }
 
@@ -42,39 +45,43 @@
             100% { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); transform: scale(1); }
         }
 
-        .enter-btn {
-            background: transparent;
-            border: 2px solid #00f2fe;
-            color: #00f2fe;
-            padding: 16px 40px;
-            border-radius: 14px;
-            cursor: pointer;
-            font-weight: 800;
-            font-size: 0.95rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            margin-bottom: 25px;
+        /* Sleek Cyberpunk Action Button in the Middle */
+        .enter-btn-new {
+            background: transparent !important;
+            border: 2px solid #00f2fe !important;
+            color: #00f2fe !important;
+            padding: 16px 45px !important;
+            border-radius: 14px !important;
+            cursor: pointer !important;
+            font-weight: 800 !important;
+            font-size: 0.95rem !important;
+            letter-spacing: 3px !important;
+            text-transform: uppercase !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15) !important;
+            font-family: 'Segoe UI', Roboto, sans-serif !important;
+            margin-bottom: 25px !important; /* Pushes the subtext down */
+            display: block !important;
         }
-        .enter-btn:hover {
-            background: #00f2fe;
-            color: #07070a;
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
+        .enter-btn-new:hover {
+            background: #00f2fe !important;
+            color: #07070a !important;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.7) !important;
             transform: scale(1.05);
         }
 
-        .intro-text {
-            color: #64748b;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-align: center;
-            min-height: 20px;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            opacity: 0.8;
+        /* Clean Professional Small Sub-text at the Bottom */
+        .intro-subtext-new {
+            color: #64748b !important;
+            font-size: 0.75rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 3px !important;
+            text-transform: uppercase !important;
+            text-align: center !important;
+            min-height: 20px !important;
+            font-family: 'Segoe UI', Roboto, sans-serif !important;
+            opacity: 0.8 !important;
+            display: block !important;
         }
 
         /* PREMIUM CYBERPUNK BASE STYLING */
@@ -317,7 +324,7 @@
         .social-item.yt:hover { border-color: #ff0000; color: #ff0000; }
         .social-item.sc:hover { border-color: #ff5500; color: #ff5500; }
 
-        /* DYNAMIC FLEXBOX FOR CERTIFIED GEARS */
+        /* CERTIFIED GEARS */
         .affiliate-market-section { margin-top: 25px; text-align: left; }
         .market-grid { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
         
@@ -331,7 +338,6 @@
             filter: brightness(0) invert(1) opacity(0.65); transition: all 0.25s ease;
         }
         
-        /* Fixed Text Styling inside Affiliate Button */
         .market-item .ali-custom-text {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 0.65rem;
@@ -360,14 +366,19 @@
 </head>
 <body>
 
+    <!-- SYSTEM INTRO SCREEN (STRICT FLEX LAYOUT) -->
     <div id="intro-overlay">
-        <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="intro-logo">
+        <!-- 1. Top Section: Logo -->
+        <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="intro-premium-logo">
         
-        <button class="enter-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
+        <!-- 2. Middle Section: Button -->
+        <button class="enter-btn-new" onclick="startExperience()">INITIALIZE SYSTEM</button>
         
-        <div class="intro-text" id="typewriter-text"></div>
+        <!-- 3. Bottom Section: Typewriter Subtext -->
+        <div class="intro-subtext-new" id="typewriter-text-new"></div>
     </div>
 
+    <!-- MAIN INTERFACE CONTAINER -->
     <div class="container">
         <div class="logo-container">
             <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
@@ -415,6 +426,7 @@
             </div>
         </div>
 
+        <!-- AFFILIATE MARKETPLACE -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
@@ -433,16 +445,15 @@
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
-        // STABLE SCI-FI UI SOUND ENGINE
         const introAudio = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav");
         introAudio.volume = 0.75;
 
-        // TYPEWRITER ANIMATION AT THE BOTTOM Now
+        // Upgraded Typewriter Script targeting new ID
         const text = "RHYTHMIC BEATS PRESENTS...";
         let idx = 0;
         function typeWriter() {
             if (idx < text.length) {
-                document.getElementById("typewriter-text").innerHTML += text.charAt(idx);
+                document.getElementById("typewriter-text-new").innerHTML += text.charAt(idx);
                 idx++;
                 setTimeout(typeWriter, 90);
             }
@@ -460,9 +471,9 @@
             }, 500);
             
             try {
-                introAudio.play().catch(err => console.log("Audio waiting for stronger interaction"));
+                introAudio.play().catch(err => console.log("Audio waiting for interaction"));
             } catch(e) {
-                console.log("Audio play failed silently");
+                console.log("Audio failed");
             }
         }
 
@@ -501,4 +512,90 @@
         async function loadVideos() {
             try {
                 const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
-                const res = await fetch(`${rawUrl
+                const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Video Gist failed");
+                const content = await res.json();
+                cachedVideos = content.sort((a, b) => b.timestamp - a.timestamp);
+                if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
+                renderVideos();
+            } catch (error) {
+                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos loaded.</p>`;
+            }
+        }
+
+        function setMainVideo(id) { document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${id}?autoplay=0`; }
+
+        function renderVideos() {
+            const container = document.getElementById('video-list-container');
+            const seeMoreVideosWrap = document.getElementById('see-more-videos-wrap');
+            container.innerHTML = ''; seeMoreVideosWrap.innerHTML = '';
+            const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
+            videosToDisplay.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb" alt="thumbnail"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
+                card.addEventListener('click', () => { setMainVideo(video.videoId); document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+                container.appendChild(card);
+            });
+            if (cachedVideos.length > 4) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-see-more';
+                btn.innerHTML = showAllVideos ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
+                btn.addEventListener('click', () => { showAllVideos = !showAllVideos; renderVideos(); });
+                seeMoreVideosWrap.appendChild(btn);
+            }
+        }
+
+        async function loadAffiliateMarkets() {
+            const container = document.getElementById('market-container');
+            try {
+                const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Markets fetch failed");
+                const markets = await res.json();
+                container.innerHTML = '';
+
+                markets.forEach(market => {
+                    const block = document.createElement('a');
+                    block.className = 'market-item';
+                    block.href = market.link;
+                    
+                    if (market.link === "#" || market.link === "") {
+                        block.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            alert(`${market.name} Affiliate Link is Coming Soon! 🔥`);
+                        });
+                    } else {
+                        block.target = "_blank";
+                    }
+
+                    if (market.name && market.name.toLowerCase().includes('ali')) {
+                        block.innerHTML = `<span class="ali-custom-text">AliExpress</span>`;
+                    } else if (market.type === "image") {
+                        block.innerHTML = `<img src="${market.source}" alt="${market.name}">`;
+                    } else {
+                        block.innerHTML = `<span class="ali-custom-text">${market.source}</span>`;
+                    }
+                    container.appendChild(block);
+                });
+
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets loaded.</p>`;
+            }
+        }
+        
+        loadTracks();
+        loadVideos();
+        loadAffiliateMarkets();
+
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+    </script>
+</body>
+</html>
