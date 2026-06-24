@@ -19,6 +19,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            opacity: 1;
+            visibility: visible;
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         .intro-text {
@@ -337,7 +339,7 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN (ROBOTIC INTERFACE WITH AUDIO) -->
+    <!-- SYSTEM INTRO SCREEN (ROBOTIC INTERFACE - HIGH COMPATIBILITY) -->
     <div id="intro-overlay">
         <div class="intro-text" id="typewriter-text"></div>
         <button class="enter-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
@@ -410,9 +412,9 @@
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
-        // HIGH QUALITY SCI-FI UI SOUND ENGINE
+        // STABLE SCI-FI UI SOUND ENGINE
         const introAudio = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav");
-        introAudio.volume = 0.7;
+        introAudio.volume = 0.75;
 
         // TYPEWRITER ANIMATION FOR SYSTEM INTRO
         const text = "RHYTHMIC BEATS PRESENTS...";
@@ -424,24 +426,25 @@
                 setTimeout(typeWriter, 90);
             }
         }
-        typeWriter();
+        
+        // Run typewriter immediately on window load safely
+        window.addEventListener('DOMContentLoaded', () => {
+            typeWriter();
+        });
 
-        // EXPERIENCE ENGINE AND AUDIO TRIGGER
+        // SAFE EXPERIENCE ENGINE TRIGGER
         function startExperience() {
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 500);
+            setTimeout(() => { 
+                overlay.style.display = 'none'; 
+            }, 500);
             
-            // Play Premium Sci-Fi Audio Effect
-            introAudio.play().catch(err => console.log("Audio play blocked by browser setup"));
-
-            // ROBOTIC SPEECH FALLBACK BACKUP
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const roboticSpeech = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
-                roboticSpeech.rate = 0.85; 
-                roboticSpeech.pitch = 0.45; 
-                window.speechSynthesis.speak(roboticSpeech);
+            // Play Stable Audio Trigger safely without crashing JavaScript execution
+            try {
+                introAudio.play().catch(err => console.log("Audio waiting for stronger interaction"));
+            } catch(e) {
+                console.log("Audio play failed silently");
             }
         }
 
