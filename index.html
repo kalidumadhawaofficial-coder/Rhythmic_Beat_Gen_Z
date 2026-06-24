@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* =========================================
+           PREMIUM BASE CYBERPUNK STYLING
+        ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #07070a;
+            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('1000098023.jpg.jpeg');
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* =========================================
            STRICT MOBILE INTRO OVERLAY WITH VISIBLE FRAME
         ========================================= */
         #intro-overlay {
@@ -21,7 +39,6 @@
             box-sizing: border-box;
         }
         
-        /* Explicit Thick Outline Frame Container for Mobile Viewports */
         .intro-frame {
             border: 3px solid #00f2fe !important; 
             padding: 45px 25px;
@@ -91,23 +108,8 @@
         }
 
         /* =========================================
-           PREMIUM CYBERPUNK BASE STYLING
+           MAIN CONTAINER STYLING
         ========================================= */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            background-color: #07070a;
-            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('1000098023.jpg.jpeg');
-            background-size: cover;
-            background-position: center top;
-            background-attachment: fixed;
-            color: #ffffff;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 20px 15px;
-            display: flex;
-            justify-content: center;
-        }
-
         .container {
             width: 100%;
             max-width: 480px;
@@ -122,7 +124,6 @@
             text-align: center;
         }
 
-        /* LOGO STYLING */
         .logo-container {
             margin-bottom: 18px;
             display: flex;
@@ -155,7 +156,6 @@
             letter-spacing: 0.5px;
         }
         
-        /* SECTIONS STYLING */
         .section-title {
             font-size: 0.8rem;
             color: #64748b;
@@ -168,6 +168,7 @@
             padding-bottom: 6px;
         }
 
+        /* TRACK CARDS */
         #track-list-container {
             margin: 15px 0 20px 0;
             display: flex;
@@ -226,11 +227,7 @@
         }
         .video-player-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
         #video-list-container {
             display: flex;
@@ -332,7 +329,7 @@
         .social-item.yt:hover { border-color: #ff0000; color: #ff0000; }
         .social-item.sc:hover { border-color: #ff5500; color: #ff5500; }
 
-        /* CERTIFIED GEARS */
+        /* CERTIFIED GEARS (AFFILIATE MARKETPLACE) */
         .affiliate-market-section { margin-top: 25px; text-align: left; }
         .market-grid { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
         
@@ -374,24 +371,14 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN WITH EXPLICIT OUTLINE FRAME BOX -->
     <div id="intro-overlay">
         <div class="intro-frame">
-            <!-- 1. Logo On Top -->
             <img src="1000098674.webp.jpeg" alt="Logo" class="intro-logo">
-            
-            <!-- 2. Button In The Middle -->
             <button class="intro-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
-            
-            <!-- 3. Professional Cinematic Bottom Text -->
             <div id="typewriter-text" class="intro-subtext"></div>
-            
-            <!-- HIGH-END CLEAN CINEMATIC MALE AUDIO PROFILE (No Robotic Browser Text-to-speech) -->
-            <audio id="heavy-male-audio" src="https://audio.jofre.de/tts.php?text=Rhythmic+Beats+Presents.+Operate+in+silence.&lang=en-US&voice=Joey" preload="auto"></audio>
         </div>
     </div>
 
-    <!-- MAIN INTERFACE CONTAINER -->
     <div class="container">
         <div class="logo-container">
             <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
@@ -439,7 +426,6 @@
             </div>
         </div>
 
-        <!-- AFFILIATE MARKETPLACE -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
@@ -450,9 +436,6 @@
         <footer>© 2026 Rhythmic Beat Gen Z. All Rights Reserved. Securely Monitored.</footer>
     </div>
 
-    <!-- =========================================
-         JAVASCRIPT ENGINE WITH VISUAL SORT & PERFECT DEEP MALE VOICE FIXED
-    ========================================= -->
     <script>
         let cachedTracks = [];
         let cachedVideos = [];
@@ -473,32 +456,59 @@
         }
         window.addEventListener('DOMContentLoaded', typeWriter);
 
-        // INITIALIZE EXPERIENCE DISPATCHER (Triggers Pure High-end Male Audio Stream Only)
+        // NATIVE ASYNCHRONOUS SYSTEM VOICE LOADER
+        let systemVoices = [];
+        function getVoicesSystem() {
+            if ('speechSynthesis' in window) {
+                systemVoices = window.speechSynthesis.getVoices();
+            }
+        }
+        getVoicesSystem();
+        if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = getVoicesSystem;
+        }
+
+        // HEAVY BARITONE REAL HARD MALE VOICE ON BUTTON ACTION
         function startExperience() {
-            try {
-                const pureAudio = document.getElementById('heavy-male-audio');
-                pureAudio.play().catch(e => console.log("Audio requires view-touch interaction layer."));
-            } catch (err) { console.log(err); }
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Flush queue
+                const baritoneUtterance = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
+                
+                baritoneUtterance.lang = 'en-US';
+                baritoneUtterance.rate = 0.72; // Impactful deep slower speed
+                baritoneUtterance.pitch = 0.1; // Maximum deep frequency pitch
+                baritoneUtterance.volume = 1.0;
+
+                if (systemVoices.length === 0) systemVoices = window.speechSynthesis.getVoices();
+                
+                // Cross-platform male fallback system profiling (Google Male, David, Microsoft)
+                const premiumMaleVoice = systemVoices.find(v => 
+                    v.name.toLowerCase().includes('microsoft david') || 
+                    v.name.toLowerCase().includes('google us english male') || 
+                    v.name.toLowerCase().includes('david') || 
+                    v.name.toLowerCase().includes('male')
+                );
+                
+                if (premiumMaleVoice) baritoneUtterance.voice = premiumMaleVoice;
+                window.speechSynthesis.speak(baritoneUtterance);
+            }
 
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
 
-        // STRICT CHRONOLOGICAL LATEST ORDER PIPELINES (100% FIXED & RENDERING ON LOAD)
+        // STRICT CHRONOLOGICAL LATEST SORTS LOGICS (100% FIXED RENDERS ON BOOT)
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
                 const content = await res.json();
                 
-                // Processing string dates into integers for reliable strict chronological sorting
                 cachedTracks = content.sort((a, b) => {
                     const timeA = a.timestamp ? new Date(a.timestamp).getTime() : (Number(a.time) || 0);
                     const timeB = b.timestamp ? new Date(b.timestamp).getTime() : (Number(b.time) || 0);
                     return timeB - timeA;
                 });
-                
-                // EXPLICIT FIXED LOOP: Triggers visual list insertion immediately after sort
                 renderTracks();
             } catch (e) { console.error(e); }
         }
@@ -530,11 +540,8 @@
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt?nocache=${new Date().getTime()}`);
                 const content = await res.json();
                 
-                // Chronological sorting system configuration for custom video modules
                 cachedVideos = content.sort((a, b) => (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0));
                 if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
-                
-                // EXPLICIT FIXED LOOP: Triggers visual asset generation instantly
                 renderVideos();
             } catch (e) { console.error(e); }
         }
@@ -552,7 +559,7 @@
             videosToDisplay.forEach(video => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
-                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
+                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb" alt="thumbnail"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
                 card.addEventListener('click', () => { 
                     setMainVideo(video.videoId); 
                     document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); 
@@ -573,7 +580,6 @@
             const container = document.getElementById('market-container');
             try {
                 const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Gears endpoint disconnected.");
                 const markets = await res.json();
                 container.innerHTML = '';
 
@@ -585,29 +591,4 @@
 
                     if (market.name && market.name.toLowerCase().includes('ali')) {
                         block.innerHTML = `<span class="ali-custom-text">AliExpress</span>`;
-                    } else if (market.type === "image") {
-                        block.innerHTML = `<img src="${market.source}" alt="${market.name}">`;
-                    } else {
-                        block.innerHTML = `<span class="ali-custom-text">${market.source}</span>`;
-                    }
-                    container.appendChild(block);
-                });
-            } catch (error) { console.error(error); }
-        }
-        
-        loadTracks();
-        loadVideos();
-        loadAffiliateMarkets();
-
-        // High-end Security Controls
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.onkeydown = function(e) {
-            if (e.keyCode == 123) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-        }
-    </script>
-</body>
-</html>
+                    } else if (market.type === "
