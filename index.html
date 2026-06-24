@@ -394,12 +394,14 @@
         // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION
         async function loadVideos() {
             try {
-                // Aluth video gist eken data fetch kirima
-                const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.json?nocache=${new Date().getTime()}`);
+                // ඔයා එවපු නිවැරදිම raw link එක කෙලින්ම ඇතුළත් කර ඇත
+                const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/87c7401dfc8b7c06431f5ba45fd48690eae7c0d6/my-videos.txt";
+                const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
+                
                 if (!res.ok) throw new Error("Video Gist data fetch failed");
                 const content = await res.json();
                 
-                // Latest timestamp anuwa video list eka auto-sort kirima (GOD MODE 10 first)
+                // Latest timestamp අනුව වීඩියෝ list එක auto-sort කිරීම (GOD MODE 10 first)
                 cachedVideos = content.sort((a, b) => {
                     let dateA = a.timestamp ? new Date(a.timestamp) : 0;
                     let dateB = b.timestamp ? new Date(b.timestamp) : 0;
@@ -426,7 +428,7 @@
             const seeMoreVideosWrap = document.getElementById('see-more-videos-wrap');
             container.innerHTML = ''; seeMoreVideosWrap.innerHTML = '';
 
-            // Multinma videos 4k pamanak listview eke penvima
+            // මුලින්ම වීඩියෝ 4ක් පමණක් listview එකේ පෙන්වීම
             const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
 
             videosToDisplay.forEach(video => {
