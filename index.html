@@ -287,12 +287,57 @@
         .social-item.yt:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
         .social-item.sc:hover { border-color: #ff5500; color: #ff5500; box-shadow: 0 0 15px rgba(255, 85, 0, 0.2); }
 
+        /* AFFILIATE HORIZONTAL MARKET STYLING */
+        .affiliate-market-section {
+            margin-top: 25px;
+            text-align: left;
+        }
+        .market-grid {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+            min-height: 50px;
+            align-items: center;
+        }
+        .market-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            height: 50px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+        .market-item img {
+            height: 22px;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(0.8);
+            transition: all 0.25s ease;
+        }
+        .market-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            border-color: #00f2fe;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+        .market-item:hover img {
+            filter: grayscale(0%) brightness(1);
+        }
+
         footer { margin-top: 35px; color: #475569; font-size: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 18px; }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- LOGO SECTION -->
         <div class="logo-container">
             <img src="./1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
         </div>
@@ -300,28 +345,34 @@
         <h1>RHYTHMIC BEATS</h1>
         <div class="subtitle">OPERATE IN SILENCE</div>
         
+        <!-- STORES AREA -->
         <div class="button-group">
             <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad"><i class="fa-solid fa-cart-shopping"></i> BUY UNTAGGED BEAT PACK ($5)</a>
             <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi"><i class="fa-solid fa-cup-straw-notch"></i> SUPPORT / BUY ON KO-FI</a>
         </div>
 
+        <!-- TRACKS LIST SECTION -->
         <div class="section-title">Latest Tracks</div>
         <div id="track-list-container">
             <p style="color: #64748b; font-size: 0.85rem;">Loading Epic Tracks...</p>
         </div>
         <div class="see-more-container" id="see-more-wrap"></div>
 
+        <!-- YOUTUBE VIDEOS SECTION -->
         <div class="section-title">Featured Videos</div>
         
+        <!-- MAIN EMBEDDED PLAYER -->
         <div class="video-player-wrapper">
             <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
+        <!-- VERTICAL VIDEO LIST -->
         <div id="video-list-container">
             <p style="color: #64748b; font-size: 0.85rem;">Loading Videos...</p>
         </div>
         <div class="see-more-container" id="see-more-videos-wrap"></div>
 
+        <!-- FOLLOW ME ON SECTION -->
         <div class="social-section">
             <div class="section-title">Follow Me On</div>
             <div class="social-grid">
@@ -333,11 +384,20 @@
             </div>
         </div>
 
+        <!-- SUBSCRIBE ME SECTION -->
         <div class="social-section">
             <div class="section-title">Subscribe Me</div>
             <div class="social-grid">
                 <a href="https://youtube.com/@rhythmic_beat_gen_z?si=_J9fQ4I0EeTiWBNX" target="_blank" class="social-item yt"><i class="fa-brands fa-youtube"></i></a>
                 <a href="https://soundcloud.com/rhythmic_beat_gen_z" target="_blank" class="social-item sc"><i class="fa-brands fa-soundcloud"></i></a>
+            </div>
+        </div>
+
+        <!-- AFFILIATE MARKETPLACE SECTION -->
+        <div class="affiliate-market-section">
+            <div class="section-title">Affiliate Marketplace</div>
+            <div class="market-grid" id="market-container">
+                <p style="color: #64748b; font-size: 0.85rem;">Loading Marketplace...</p>
             </div>
         </div>
         
@@ -394,14 +454,12 @@
         // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION
         async function loadVideos() {
             try {
-                // ඔයා එවපු නිවැරදිම raw link එක කෙලින්ම ඇතුළත් කර ඇත
                 const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/87c7401dfc8b7c06431f5ba45fd48690eae7c0d6/my-videos.txt";
                 const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
                 
                 if (!res.ok) throw new Error("Video Gist data fetch failed");
                 const content = await res.json();
                 
-                // Latest timestamp අනුව වීඩියෝ list එක auto-sort කිරීම (GOD MODE 10 first)
                 cachedVideos = content.sort((a, b) => {
                     let dateA = a.timestamp ? new Date(a.timestamp) : 0;
                     let dateB = b.timestamp ? new Date(b.timestamp) : 0;
@@ -428,7 +486,6 @@
             const seeMoreVideosWrap = document.getElementById('see-more-videos-wrap');
             container.innerHTML = ''; seeMoreVideosWrap.innerHTML = '';
 
-            // මුලින්ම වීඩියෝ 4ක් පමණක් listview එකේ පෙන්වීම
             const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
 
             videosToDisplay.forEach(video => {
@@ -459,9 +516,45 @@
                 seeMoreVideosWrap.appendChild(btn);
             }
         }
+
+        // 🌟 3. FETCH AFFILIATE MARKETS FUNCTION
+        async function loadAffiliateMarkets() {
+            try {
+                // ඔයා එවපු අලුත්ම Gist Raw ලින්ක් එක කෙලින්ම දැම්මා මචං
+                const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/1234238c0de46a9c4c3f3e53265c3a8820eb3724/market.txt"; 
+                
+                const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Market data fetch failed");
+                const markets = await res.json();
+                
+                const container = document.getElementById('market-container');
+                container.innerHTML = ''; 
+
+                markets.forEach(market => {
+                    const link = document.createElement('a');
+                    link.className = 'market-item';
+                    link.href = market.affiliateLink;
+                    link.innerHTML = `<img src="${market.logoUrl}" alt="${market.companyName}">`;
+                    
+                    // ලින්ක් එක තවම නැත්නම් (# නම්) Coming Soon ඇලර්ට් එකක් පෙන්වීම
+                    link.addEventListener('click', (e) => {
+                        if(market.affiliateLink === '#') {
+                            e.preventDefault(); 
+                            alert(`${market.companyName} Affiliate Link is Coming Soon! 🔥`);
+                        }
+                    });
+
+                    container.appendChild(link);
+                });
+            } catch (error) {
+                console.error(error);
+                document.getElementById('market-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load markets.</p>`;
+            }
+        }
         
         loadTracks();
         loadVideos();
+        loadAffiliateMarkets();
 
         /* MAXIMUM SECURITY SHIELD */
         document.addEventListener('contextmenu', e => e.preventDefault());
