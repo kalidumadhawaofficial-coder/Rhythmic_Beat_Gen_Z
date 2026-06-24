@@ -294,12 +294,10 @@
         }
         .market-grid {
             display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 12px;
-            min-height: 50px;
+            justify-content: space-between;
             align-items: center;
+            gap: 10px;
+            margin-top: 12px;
         }
         .market-item {
             display: flex;
@@ -307,16 +305,18 @@
             justify-content: center;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 8px 16px;
+            padding: 8px 12px;
             height: 50px;
             border-radius: 14px;
             text-decoration: none;
             transition: all 0.25s ease;
             cursor: pointer;
+            flex: 1; /* 👈 ලෝගෝ තුනම ඉඩ බෙදාගෙන ලස්සනට එක පේළියට හිටින්න සෙට් කරා */
+            min-width: 80px;
         }
         .market-item img {
-            height: 22px;
-            width: auto;
+            max-width: 100%;
+            height: 20px;
             object-fit: contain;
             /* කළු ලෝගෝ සේරම සුදු කරලා, සයිබර්පන්ක් ප්‍රිමියම් ලුක් එකක් දෙනවා */
             filter: brightness(0) invert(1) opacity(0.65);
@@ -456,10 +456,7 @@
         // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION (FIXED MASTER RAW LINK & CACHE BYPASS)
         async function loadVideos() {
             try {
-                // සදහටම අප්ඩේට් වෙන Master Raw Link එක සෙට් කරා මචං
                 const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
-                
-                // ?nocache කෑල්ල නිසා Gist එක අප්ඩේට් කරපු ගමන් ලයිව් වීඩියෝ ටික සයිට් එකට එනවා
                 const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
                 
                 if (!res.ok) throw new Error("Video Gist data fetch failed");
@@ -537,7 +534,8 @@
               },
               {
                 "companyName": "AliExpress",
-                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/AliExpress_logo.svg",
+                // 💡 කෙලින්ම වැඩ කරන සහ පට්ට පැහැදිලි AliExpress නිල සුදු SVG ලෝගෝ ලින්ක් එක දාලා සෙට් කරා මචං
+                "logoUrl": "https://cdn.worldvectorlogo.com/logos/aliexpress-4.svg",
                 "affiliateLink": "#"
               }
             ];
