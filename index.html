@@ -29,12 +29,13 @@
         
         /* 1. Logo At The Top */
         .intro-logo {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #00f2fe;
-            margin-bottom: 35px; 
+            margin-bottom: 35px; /* Space between logo and button */
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
             animation: pulseGlow 2s infinite ease-in-out;
         }
 
@@ -59,7 +60,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
             font-family: 'Segoe UI', Roboto, sans-serif;
-            margin-bottom: 25px; 
+            margin-bottom: 25px; /* Space between button and subtext */
         }
         .intro-btn:hover {
             background: #00f2fe;
@@ -68,20 +69,20 @@
             transform: scale(1.05);
         }
 
-        /* 3. High-End Cinematic Text Below Button */
+        /* 3. Professional Cinematic Text Below Button */
         .intro-subtext {
             color: #94a3b8;
             font-size: 0.75rem;
-            letter-spacing: 5px;
+            letter-spacing: 5px; /* Cinematic spacing */
             font-weight: 600;
             text-transform: uppercase;
             text-align: center;
             font-family: 'Segoe UI', Roboto, sans-serif;
             min-height: 20px;
             opacity: 0.9;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
-            line-height: 1.8;
-            padding: 0 10px;
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4); /* Premium Glow */
+            max-width: 85%;
+            line-height: 1.6;
         }
 
         /* =========================================
@@ -378,7 +379,7 @@
         <!-- 2. Button In The Middle -->
         <button class="intro-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
         
-        <!-- 3. Subtext Below Button (Updated for Professional Look) -->
+        <!-- 3. Professional Subtext Below Button -->
         <div id="typewriter-text" class="intro-subtext"></div>
     </div>
 
@@ -455,7 +456,7 @@
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
         // TYPEWRITER EFFECT WITH FULL PROFESSIONAL TEXT
-        const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
+        const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE";
         let idx = 0;
         function typeWriter() {
             if (idx < text.length) {
@@ -469,28 +470,23 @@
             typeWriter();
         });
 
-        // SYSTEM INITIALIZATION WITH SAFE ROBOTIC VOICE
+        // SYSTEM INITIALIZATION WITH ORIGINAL ROBOTIC VOICE
         function startExperience() {
+            // Restore Original Robotic Voice
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
+                msg.rate = 0.8;
+                msg.pitch = 0.5;
+                window.speechSynthesis.speak(msg);
+            }
+
+            // Remove Overlay
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => { 
                 overlay.style.display = 'none'; 
             }, 500);
-            
-            // 100% Safe Robotic Voice Engine
-            try {
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel(); // Clear any stuck voice
-                    const msg = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
-                    msg.lang = 'en-US';
-                    msg.rate = 0.75; // Slower, more robotic
-                    msg.pitch = 0.8; // Safer pitch for all Android/iOS compatibility
-                    msg.volume = 1;
-                    window.speechSynthesis.speak(msg);
-                }
-            } catch (error) {
-                console.log("Robotic Voice not supported or blocked by browser.");
-            }
         }
 
         async function loadTracks() {
