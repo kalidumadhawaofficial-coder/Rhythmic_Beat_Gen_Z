@@ -11,7 +11,6 @@
         
         body {
             background-color: #07070a;
-            /* Fixed background image path according to your exact filename */
             background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('./1000098023.jpg.jpeg');
             background-size: cover;
             background-position: center top;
@@ -70,7 +69,7 @@
             letter-spacing: 0.5px;
         }
         
-        /* CLEAN & STREAMLINED TRACKS */
+        /* CLEAN & STREAMLINED SECTIONS */
         .section-title {
             font-size: 0.8rem;
             color: #64748b;
@@ -123,6 +122,67 @@
         }
         .listen-btn:hover {
             background: #ff7733;
+        }
+
+        /* YOUTUBE EMBED PLAYER & VERTICAL LIST STYLING */
+        .video-player-wrapper {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            margin-bottom: 15px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+            background: #000;
+        }
+        .video-player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        #video-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .video-card {
+            background: rgba(22, 22, 33, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+        }
+        .video-card:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+            background: rgba(30, 30, 45, 0.65);
+            transform: translateY(-1.5px);
+        }
+        .video-thumb {
+            width: 100px;
+            height: 65px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .video-details {
+            flex: 1;
+        }
+        .video-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #f1f5f9;
+            line-height: 1.3;
         }
 
         /* SEE MORE BUTTON STYLING */
@@ -249,9 +309,19 @@
         <div id="track-list-container">
             <p style="color: #64748b; font-size: 0.85rem;">Loading Epic Tracks...</p>
         </div>
-        
         <div class="see-more-container" id="see-more-wrap"></div>
+
+        <div class="section-title">Featured Videos</div>
         
+        <div class="video-player-wrapper">
+            <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div id="video-list-container">
+            <p style="color: #64748b; font-size: 0.85rem;">Loading Videos...</p>
+        </div>
+        <div class="see-more-container" id="see-more-videos-wrap"></div>
+
         <div class="social-section">
             <div class="section-title">Follow Me On</div>
             <div class="social-grid">
@@ -276,67 +346,120 @@
 
     <script>
         let cachedTracks = [];
+        let cachedVideos = [];
         let showAllTracks = false;
+        let showAllVideos = false;
 
+        // 🌟 1. FETCH TRACKS FUNCTION
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
                 if (!res.ok) throw new Error("Gist data fetch failed");
-                
                 const content = await res.json();
                 
-                // 1. TIME/TIMESTAMP ANUWA LATEST TRACKS LISS_EKUWA AUTO-SORT KARANNA
-                // JSON eke 'time' ho 'timestamp' thiyenam eka anuwa sort wenawa. Nathnam default ena order ekama gannawa.
                 cachedTracks = content.sort((a, b) => {
                     let dateA = a.timestamp || a.time ? new Date(a.timestamp || a.time) : 0;
                     let dateB = b.timestamp || b.time ? new Date(b.timestamp || b.time) : 0;
-                    return dateB - dateA; // Latest first
+                    return dateB - dateA;
                 });
-
                 renderTracks();
-                
             } catch (error) {
                 console.error(error);
-                document.getElementById('track-list-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load tracks. Please check Gist.</p>`;
+                document.getElementById('track-list-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load tracks.</p>`;
             }
         }
 
-        // TRACKS RENDER KIRIME FUNCTION
         function renderTracks() {
             const container = document.getElementById('track-list-container');
             const seeMoreWrap = document.getElementById('see-more-wrap');
-            container.innerHTML = ''; 
-            seeMoreWrap.innerHTML = '';
+            container.innerHTML = ''; seeMoreWrap.innerHTML = '';
 
-            // 2. MULTINMA TRACKS 5K VITHARAK PENWANNA LIMIT KIRIMA
             const tracksToDisplay = showAllTracks ? cachedTracks : cachedTracks.slice(0, 5);
-
             tracksToDisplay.forEach(track => {
                 const card = document.createElement('div');
                 card.className = 'track-card';
-                card.innerHTML = `
-                    <span class="track-name">${track.name}</span>
-                    <a href="${track.link}" target="_blank" class="listen-btn">PLAY</a>
-                `;
+                card.innerHTML = `<span class="track-name">${track.name}</span><a href="${track.link}" target="_blank" class="listen-btn">PLAY</a>`;
                 container.appendChild(card);
             });
 
-            // TRACKS 5 KATA WADA THIYENAM "SEE MORE" BUTTON EKA AUTO HADENAWA
             if (cachedTracks.length > 5) {
                 const btn = document.createElement('button');
                 btn.className = 'btn-see-more';
                 btn.innerHTML = showAllTracks ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
+                btn.addEventListener('click', () => { showAllTracks = !showAllTracks; renderTracks(); });
+                seeMoreWrap.appendChild(btn);
+            }
+        }
+
+        // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION
+        async function loadVideos() {
+            try {
+                // Aluth video gist eken data fetch kirima
+                const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.json?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Video Gist data fetch failed");
+                const content = await res.json();
                 
-                btn.addEventListener('click', () => {
-                    showAllTracks = !showAllTracks;
-                    renderTracks(); // Toggle karala re-render karanawa
+                // Latest timestamp anuwa video list eka auto-sort kirima (GOD MODE 10 first)
+                cachedVideos = content.sort((a, b) => {
+                    let dateA = a.timestamp ? new Date(a.timestamp) : 0;
+                    let dateB = b.timestamp ? new Date(b.timestamp) : 0;
+                    return dateB - dateA;
                 });
                 
-                seeMoreWrap.appendChild(btn);
+                if(cachedVideos.length > 0) {
+                    setMainVideo(cachedVideos[0].videoId);
+                }
+                
+                renderVideos();
+            } catch (error) {
+                console.error(error);
+                document.getElementById('video-list-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load videos.</p>`;
+            }
+        }
+
+        function setMainVideo(id) {
+            document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${id}?autoplay=0`;
+        }
+
+        function renderVideos() {
+            const container = document.getElementById('video-list-container');
+            const seeMoreVideosWrap = document.getElementById('see-more-videos-wrap');
+            container.innerHTML = ''; seeMoreVideosWrap.innerHTML = '';
+
+            // Multinma videos 4k pamanak listview eke penvima
+            const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
+
+            videosToDisplay.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                const thumbUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
+                
+                card.innerHTML = `
+                    <img src="${thumbUrl}" class="video-thumb" alt="thumbnail">
+                    <div class="video-details">
+                        <div class="video-title">${video.title}</div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    setMainVideo(video.videoId);
+                    document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+
+                container.appendChild(card);
+            });
+
+            if (cachedVideos.length > 4) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-see-more';
+                btn.innerHTML = showAllVideos ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
+                btn.addEventListener('click', () => { showAllVideos = !showAllVideos; renderVideos(); });
+                seeMoreVideosWrap.appendChild(btn);
             }
         }
         
         loadTracks();
+        loadVideos();
 
         /* MAXIMUM SECURITY SHIELD */
         document.addEventListener('contextmenu', e => e.preventDefault());
