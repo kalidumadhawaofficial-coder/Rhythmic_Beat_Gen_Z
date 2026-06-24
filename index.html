@@ -334,7 +334,6 @@
             </div>
         </div>
 
-        <!-- AFFILIATE MARKETPLACE DYNAMIC SECTION -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
@@ -445,8 +444,8 @@
                         block.target = "_blank";
                     }
 
-                    // 🛠️ FIX: Force AliExpress to render as a perfect clean Text button regardless of type logic bugs
-                    if (market.name.toLowerCase().includes('aliexpress')) {
+                    // 🛠️ ULTIMATE BUG FIX FOR ALIEXPRESS
+                    if (market.name && market.name.toLowerCase().includes('ali')) {
                         block.innerHTML = `<span class="ali-custom-text">AliExpress</span>`;
                     } else if (market.type === "image") {
                         block.innerHTML = `<img src="${market.source}" alt="${market.name}">`;
