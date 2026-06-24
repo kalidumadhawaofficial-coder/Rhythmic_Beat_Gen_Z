@@ -6,7 +6,7 @@
     <title>Premium Rhythmic Beats</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* INTRO OVERLAY ANIMATION SYSTEM */
+        /* EXTRA PREMIUM INTRO OVERLAY SYSTEM */
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -22,38 +22,59 @@
             opacity: 1;
             visibility: visible;
             transition: opacity 0.5s ease, visibility 0.5s ease;
+            padding: 20px;
         }
-        .intro-text {
-            color: #00f2fe;
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            text-align: center;
-            min-height: 40px;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+        
+        .intro-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+            margin-bottom: 40px;
+            animation: pulseGlow 2s infinite ease-in-out;
         }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); transform: scale(1); }
+            50% { box-shadow: 0 0 40px rgba(0, 242, 254, 0.6); transform: scale(1.03); }
+            100% { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); transform: scale(1); }
+        }
+
         .enter-btn {
             background: transparent;
             border: 2px solid #00f2fe;
             color: #00f2fe;
-            padding: 15px 35px;
+            padding: 16px 40px;
             border-radius: 14px;
             cursor: pointer;
             font-weight: 800;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin-bottom: 25px;
         }
         .enter-btn:hover {
             background: #00f2fe;
             color: #07070a;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
             transform: scale(1.05);
+        }
+
+        .intro-text {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-align: center;
+            min-height: 20px;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            opacity: 0.8;
         }
 
         /* PREMIUM CYBERPUNK BASE STYLING */
@@ -339,13 +360,14 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN -->
     <div id="intro-overlay">
-        <div class="intro-text" id="typewriter-text"></div>
+        <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="intro-logo">
+        
         <button class="enter-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
+        
+        <div class="intro-text" id="typewriter-text"></div>
     </div>
 
-    <!-- MAIN INTERFACE CONTAINER -->
     <div class="container">
         <div class="logo-container">
             <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
@@ -393,7 +415,6 @@
             </div>
         </div>
 
-        <!-- AFFILIATE MARKETPLACE DYNAMIC SECTION -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
@@ -416,7 +437,7 @@
         const introAudio = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav");
         introAudio.volume = 0.75;
 
-        // TYPEWRITER ANIMATION FOR SYSTEM INTRO
+        // TYPEWRITER ANIMATION AT THE BOTTOM Now
         const text = "RHYTHMIC BEATS PRESENTS...";
         let idx = 0;
         function typeWriter() {
@@ -431,7 +452,6 @@
             typeWriter();
         });
 
-        // SAFE EXPERIENCE ENGINE TRIGGER
         function startExperience() {
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
@@ -481,90 +501,4 @@
         async function loadVideos() {
             try {
                 const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
-                const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Video Gist failed");
-                const content = await res.json();
-                cachedVideos = content.sort((a, b) => b.timestamp - a.timestamp);
-                if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
-                renderVideos();
-            } catch (error) {
-                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos loaded.</p>`;
-            }
-        }
-
-        function setMainVideo(id) { document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${id}?autoplay=0`; }
-
-        function renderVideos() {
-            const container = document.getElementById('video-list-container');
-            const seeMoreVideosWrap = document.getElementById('see-more-videos-wrap');
-            container.innerHTML = ''; seeMoreVideosWrap.innerHTML = '';
-            const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
-            videosToDisplay.forEach(video => {
-                const card = document.createElement('div');
-                card.className = 'video-card';
-                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb" alt="thumbnail"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
-                card.addEventListener('click', () => { setMainVideo(video.videoId); document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
-                container.appendChild(card);
-            });
-            if (cachedVideos.length > 4) {
-                const btn = document.createElement('button');
-                btn.className = 'btn-see-more';
-                btn.innerHTML = showAllVideos ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
-                btn.addEventListener('click', () => { showAllVideos = !showAllVideos; renderVideos(); });
-                seeMoreVideosWrap.appendChild(btn);
-            }
-        }
-
-        async function loadAffiliateMarkets() {
-            const container = document.getElementById('market-container');
-            try {
-                const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Markets fetch failed");
-                const markets = await res.json();
-                container.innerHTML = '';
-
-                markets.forEach(market => {
-                    const block = document.createElement('a');
-                    block.className = 'market-item';
-                    block.href = market.link;
-                    
-                    if (market.link === "#" || market.link === "") {
-                        block.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            alert(`${market.name} Affiliate Link is Coming Soon! 🔥`);
-                        });
-                    } else {
-                        block.target = "_blank";
-                    }
-
-                    if (market.name && market.name.toLowerCase().includes('ali')) {
-                        block.innerHTML = `<span class="ali-custom-text">AliExpress</span>`;
-                    } else if (market.type === "image") {
-                        block.innerHTML = `<img src="${market.source}" alt="${market.name}">`;
-                    } else {
-                        block.innerHTML = `<span class="ali-custom-text">${market.source}</span>`;
-                    }
-                    container.appendChild(block);
-                });
-
-            } catch (error) {
-                console.error(error);
-                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets loaded.</p>`;
-            }
-        }
-        
-        loadTracks();
-        loadVideos();
-        loadAffiliateMarkets();
-
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.onkeydown = function(e) {
-            if (e.keyCode == 123) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-        }
-    </script>
-</body>
-</html>
+                const res = await fetch(`${rawUrl
