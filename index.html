@@ -260,7 +260,7 @@
             filter: brightness(0) invert(1) opacity(0.65); transition: all 0.25s ease;
         }
         
-        /* Fixed & Improved Text Styling inside Affiliate Button */
+        /* Premium Text Styling inside Affiliate Button */
         .market-item .ali-custom-text {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 0.72rem;
@@ -273,7 +273,6 @@
             text-align: center;
             width: 100%;
             display: block;
-            word-break: break-all;
         }
 
         .market-item:hover {
@@ -335,6 +334,7 @@
             </div>
         </div>
 
+        <!-- AFFILIATE MARKETPLACE DYNAMIC SECTION -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
@@ -351,7 +351,6 @@
         let showAllTracks = false;
         let showAllVideos = false;
 
-        // 🔗 Connected directly to your market.txt Gist Raw URL
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
         async function loadTracks() {
@@ -446,8 +445,10 @@
                         block.target = "_blank";
                     }
 
-                    // Handles both Image and Text formats correctly to display inside the card
-                    if (market.type === "image") {
+                    // 🛠️ FIX: Force AliExpress to render as a perfect clean Text button regardless of type logic bugs
+                    if (market.name.toLowerCase().includes('aliexpress')) {
+                        block.innerHTML = `<span class="ali-custom-text">AliExpress</span>`;
+                    } else if (market.type === "image") {
                         block.innerHTML = `<img src="${market.source}" alt="${market.name}">`;
                     } else {
                         block.innerHTML = `<span class="ali-custom-text">${market.source}</span>`;
