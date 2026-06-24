@@ -7,8 +7,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* =========================================
-           STRICT MOBILE INTRO OVERLAY WITH VISIBLE FRAME
+           PREMIUM BASE CYBERPUNK STYLING
         ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #07070a;
+            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('1000098023.jpg.jpeg');
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* STRICT MOBILE INTRO OVERLAY WITH VISIBLE FRAME */
         #intro-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -21,7 +37,6 @@
             box-sizing: border-box;
         }
         
-        /* Fixed Border Box explicitly tailored for Mobile Viewports */
         .intro-frame {
             border: 3px solid #00f2fe !important; 
             padding: 45px 25px;
@@ -90,24 +105,7 @@
             line-height: 1.8;
         }
 
-        /* =========================================
-           PREMIUM CYBERPUNK BASE STYLING
-        ========================================= */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            background-color: #07070a;
-            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('1000098023.jpg.jpeg');
-            background-size: cover;
-            background-position: center top;
-            background-attachment: fixed;
-            color: #ffffff;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 20px 15px;
-            display: flex;
-            justify-content: center;
-        }
-
+        /* MAIN CONTAINER STYLING */
         .container {
             width: 100%;
             max-width: 480px;
@@ -122,7 +120,6 @@
             text-align: center;
         }
 
-        /* LOGO STYLING */
         .logo-container {
             margin-bottom: 18px;
             display: flex;
@@ -155,7 +152,6 @@
             letter-spacing: 0.5px;
         }
         
-        /* SECTIONS STYLING */
         .section-title {
             font-size: 0.8rem;
             color: #64748b;
@@ -168,6 +164,7 @@
             padding-bottom: 6px;
         }
 
+        /* TRACK CARDS */
         #track-list-container {
             margin: 15px 0 20px 0;
             display: flex;
@@ -226,11 +223,7 @@
         }
         .video-player-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
         #video-list-container {
             display: flex;
@@ -377,13 +370,8 @@
     <!-- SYSTEM INTRO SCREEN WITH EXPLICIT OUTLINE FRAME BOX -->
     <div id="intro-overlay">
         <div class="intro-frame">
-            <!-- 1. Logo On Top -->
             <img src="1000098674.webp.jpeg" alt="Logo" class="intro-logo">
-            
-            <!-- 2. Button In The Middle -->
             <button class="intro-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
-            
-            <!-- 3. Professional Cinematic Bottom Text -->
             <div id="typewriter-text" class="intro-subtext"></div>
         </div>
     </div>
@@ -409,14 +397,13 @@
         <div class="see-more-container" id="see-more-wrap"></div>
 
         <div class="section-title">Featured Videos</div>
-        <div class="video-player-wrapper">
+                <div class="video-player-wrapper">
             <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div id="video-list-container">
-            <p style="color: #64748b; font-size: 0.85rem;">Securing Videos...</p>
-        </div>
+        <div id="video-list-container"><p style="color: #64748b; font-size: 0.85rem;">Securing Videos...</p></div>
         <div class="see-more-container" id="see-more-videos-wrap"></div>
 
+        <!-- ALL SOCIAL SECTIONS RESTORED NATIVELY -->
         <div class="social-section">
             <div class="section-title">Follow Me On</div>
             <div class="social-grid">
@@ -436,7 +423,7 @@
             </div>
         </div>
 
-        <!-- AFFILIATE MARKETPLACE -->
+        <!-- AFFILIATE MARKETPLACE RESTORED -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
@@ -448,50 +435,46 @@
     </div>
 
     <!-- =========================================
-         JAVASCRIPT ENGINE (DEFINITIVE CONSOLE LOCK)
+         JAVASCRIPT ENGINES (CHRONOLOGICAL SORT ENGINE RE-ESTABLISHED)
     ========================================= -->
     <script>
-        let cachedTracks = [];
-        let cachedVideos = [];
-        let showAllTracks = false;
-        let showAllVideos = false;
-
+        let cachedTracks = [], cachedVideos = [], showAllTracks = false, showAllVideos = false;
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
-
-        // REAL HIGH-END AUDIO FILE FOR AUTHENTIC DEEP MALE VOICE (Bypasses text-to-speech engine blockages)
-        const heavyMaleVoice = new Audio("https://audio.jofre.de/tts.php?text=Rhythmic+Beats+Presents.+Operate+in+silence.&lang=en-US&voice=Joey");
-        heavyMaleVoice.volume = 1.0;
 
         // Typewriter Effect
         const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
         let idx = 0;
-        function typeWriter() {
-            if (idx < text.length) {
-                document.getElementById("typewriter-text").innerHTML += text.charAt(idx);
-                idx++;
-                setTimeout(typeWriter, 80);
-            }
-        }
+        function typeWriter() { if (idx < text.length) { document.getElementById("typewriter-text").innerHTML += text.charAt(idx); idx++; setTimeout(typeWriter, 80); } }
         window.addEventListener('DOMContentLoaded', typeWriter);
 
-        // INITIALIZE EXPERIENCE DISPATCHER
-        function startExperience() {
-            try {
-                heavyMaleVoice.play().catch(e => console.log("Audio pipeline requires active viewport touch."));
-            } catch (err) { console.log(err); }
+        // Native Voices Preloader
+        let systemVoices = [];
+        function loadSystemVoices() { if ('speechSynthesis' in window) systemVoices = window.speechSynthesis.getVoices(); }
+        loadSystemVoices();
+        if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) window.speechSynthesis.onvoiceschanged = loadSystemVoices;
 
+        // HIGH-END MALE VOICE WITH FORCED ACTIVE INTERACTION LOCK
+        function startExperience() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
+                msg.lang = 'en-US'; msg.rate = 0.70; msg.pitch = 0.1; msg.volume = 1.0;
+                
+                if (systemVoices.length === 0) systemVoices = window.speechSynthesis.getVoices();
+                const deepVoice = systemVoices.find(v => v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('google us english') || v.name.toLowerCase().includes('david') || v.name.toLowerCase().includes('microsoft david'));
+                if (deepVoice) msg.voice = deepVoice;
+                window.speechSynthesis.speak(msg);
+            }
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
 
-        // STRICT CHRONOLOGICAL LATEST ORDER FIX
+        // CHRONOLOGICAL SORT LOGICS FOR ABSOLUTE TIMESTAMPS
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
                 const content = await res.json();
-                
-                // Parsing elements into UNIX timestamps for sorting execution loop
                 cachedTracks = content.sort((a, b) => {
                     const timeA = a.timestamp ? new Date(a.timestamp).getTime() : (Number(a.time) || 0);
                     const timeB = b.timestamp ? new Date(b.timestamp).getTime() : (Number(b.time) || 0);
@@ -508,15 +491,11 @@
             const tracksToDisplay = showAllTracks ? cachedTracks : cachedTracks.slice(0, 5);
             
             tracksToDisplay.forEach(track => {
-                const card = document.createElement('div');
-                card.className = 'track-card';
-                card.innerHTML = `<span class="track-name">${track.name}</span><a href="${track.link}" target="_blank" class="listen-btn">PLAY</a>`;
-                container.appendChild(card);
+                container.innerHTML += `<div class="track-card"><span class="track-name">${track.name}</span><a href="${track.link}" target="_blank" class="listen-btn">PLAY</a></div>`;
             });
             
             if (cachedTracks.length > 5) {
-                const btn = document.createElement('button');
-                btn.className = 'btn-see-more';
+                const btn = document.createElement('button'); btn.className = 'btn-see-more';
                 btn.innerHTML = showAllTracks ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
                 btn.addEventListener('click', () => { showAllTracks = !showAllTracks; renderTracks(); });
                 seeMoreWrap.appendChild(btn);
@@ -527,16 +506,10 @@
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt?nocache=${new Date().getTime()}`);
                 const content = await res.json();
-                
-                // Absolute structural layout sorting for video assets
                 cachedVideos = content.sort((a, b) => (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0));
-                if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
+                if(cachedVideos.length > 0) document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${cachedVideos[0].videoId}?autoplay=0`;
                 renderVideos();
             } catch (e) { console.error(e); }
-        }
-
-        function setMainVideo(id) { 
-            document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${id}?autoplay=0`; 
         }
 
         function renderVideos() {
@@ -546,19 +519,14 @@
             const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
             
             videosToDisplay.forEach(video => {
-                const card = document.createElement('div');
-                card.className = 'video-card';
+                const card = document.createElement('div'); card.className = 'video-card';
                 card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb" alt="thumbnail"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
-                card.addEventListener('click', () => { 
-                    setMainVideo(video.videoId); 
-                    document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-                });
+                card.addEventListener('click', () => { document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${video.videoId}?autoplay=0`; });
                 container.appendChild(card);
             });
             
             if (cachedVideos.length > 4) {
-                const btn = document.createElement('button');
-                btn.className = 'btn-see-more';
+                const btn = document.createElement('button'); btn.className = 'btn-see-more';
                 btn.innerHTML = showAllVideos ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
                 btn.addEventListener('click', () => { showAllVideos = !showAllVideos; renderVideos(); });
                 seeMoreVideosWrap.appendChild(btn);
@@ -569,16 +537,9 @@
             const container = document.getElementById('market-container');
             try {
                 const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
-                if (!res.ok) throw new Error("Markets system error");
-                const markets = await res.json();
-                container.innerHTML = '';
-
+                const markets = await res.json(); container.innerHTML = '';
                 markets.forEach(market => {
-                    const block = document.createElement('a');
-                    block.className = 'market-item';
-                    block.href = market.link;
-                    block.target = "_blank";
-
+                    const block = document.createElement('a'); block.className = 'market-item'; block.href = market.link; block.target = "_blank";
                     if (market.name && market.name.toLowerCase().includes('ali')) {
                         block.innerHTML = `<span class="ali-custom-text">AliExpress</span>`;
                     } else if (market.type === "image") {
@@ -591,19 +552,11 @@
             } catch (error) { console.error(error); }
         }
         
-        loadTracks();
-        loadVideos();
-        loadAffiliateMarkets();
+        loadTracks(); loadVideos(); loadAffiliateMarkets();
 
-        // Anti-Inspect Security Shields
+        // Strict Inspect Shield Security
         document.addEventListener('contextmenu', e => e.preventDefault());
-        document.onkeydown = function(e) {
-            if (e.keyCode == 123) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-        }
+        document.onkeydown = function(e) { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 67, 74].includes(e.keyCode)) || (e.ctrlKey && e.keyCode == 85)) return false; }
     </script>
 </body>
 </html>
