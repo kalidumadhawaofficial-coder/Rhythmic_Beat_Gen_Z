@@ -308,7 +308,7 @@
             filter: brightness(0) invert(1) opacity(0.65); transition: all 0.25s ease;
         }
         
-        /* Fixed & Fully Confined Premium Text Styling inside Affiliate Button */
+        /* Fixed Text Styling inside Affiliate Button */
         .market-item .ali-custom-text {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 0.65rem;
@@ -337,7 +337,7 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN (ROBOTIC INTERFACE) -->
+    <!-- SYSTEM INTRO SCREEN (ROBOTIC INTERFACE WITH AUDIO) -->
     <div id="intro-overlay">
         <div class="intro-text" id="typewriter-text"></div>
         <button class="enter-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
@@ -410,6 +410,10 @@
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
+        // HIGH QUALITY SCI-FI UI SOUND ENGINE
+        const introAudio = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav");
+        introAudio.volume = 0.7;
+
         // TYPEWRITER ANIMATION FOR SYSTEM INTRO
         const text = "RHYTHMIC BEATS PRESENTS...";
         let idx = 0;
@@ -422,22 +426,21 @@
         }
         typeWriter();
 
-        // EXPERIENCE ENGINE AND ROBOTIC VOICE TRIGGER
+        // EXPERIENCE ENGINE AND AUDIO TRIGGER
         function startExperience() {
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
             
-            // WEB SPEECH ENGINE CONFIGURATION
+            // Play Premium Sci-Fi Audio Effect
+            introAudio.play().catch(err => console.log("Audio play blocked by browser setup"));
+
+            // ROBOTIC SPEECH FALLBACK BACKUP
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Clear queued speech
+                window.speechSynthesis.cancel();
                 const roboticSpeech = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
-                
-                // Advanced Tactical Audio Tuning
                 roboticSpeech.rate = 0.85; 
                 roboticSpeech.pitch = 0.45; 
-                roboticSpeech.volume = 1.0;
-                
                 window.speechSynthesis.speak(roboticSpeech);
             }
         }
