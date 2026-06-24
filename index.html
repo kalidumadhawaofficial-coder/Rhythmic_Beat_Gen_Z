@@ -260,19 +260,21 @@
             filter: brightness(0) invert(1) opacity(0.65); transition: all 0.25s ease;
         }
         
-        /* Premium Text Styling inside Affiliate Button */
+        /* Fixed & Fully Confined Premium Text Styling inside Affiliate Button */
         .market-item .ali-custom-text {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 0.72rem;
+            font-size: 0.65rem;
             font-weight: 800;
             color: #ffffff;
             opacity: 0.65;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
             transition: all 0.25s ease;
             text-align: center;
             width: 100%;
             display: block;
+            word-wrap: break-word;
+            padding: 0 2px;
         }
 
         .market-item:hover {
@@ -334,6 +336,7 @@
             </div>
         </div>
 
+        <!-- AFFILIATE MARKETPLACE DYNAMIC SECTION -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
@@ -444,7 +447,7 @@
                         block.target = "_blank";
                     }
 
-                    // 🛠️ ULTIMATE BUG FIX FOR ALIEXPRESS
+                    // 🛠️ DYNAMIC FIX FOR ALIEXPRESS & CUSTOM TEXT
                     if (market.name && market.name.toLowerCase().includes('ali')) {
                         block.innerHTML = `<span class="ali-custom-text">AliExpress</span>`;
                     } else if (market.type === "image") {
