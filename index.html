@@ -3,63 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rhythmic Beats | Official</title>
+    <title>Premium Rhythmic Beats</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* Premium Tactical Cyberpunk Aesthetic */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #07070a; color: #fff; font-family: sans-serif; padding: 20px 15px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 480px; background: rgba(13, 13, 18, 0.75); backdrop-filter: blur(25px); padding: 35px 25px; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
-        .store-logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #00f2fe; margin-bottom: 18px; }
-        h1 { font-size: 2rem; margin-bottom: 5px; }
-        .subtitle { color: #94a3b8; margin-bottom: 30px; font-size: 0.9rem; }
         
-        /* Sections */
-        .section-title { font-size: 0.8rem; color: #64748b; text-transform: uppercase; margin-bottom: 15px; text-align: left; border-bottom: 1px solid #222; padding-bottom: 5px; }
+        body {
+            background-color: #07070a;
+            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('./1000098023.jpg.jpeg');
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 20px 0;
+            background: rgba(13, 13, 18, 0.75);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 35px 25px;
+            border-radius: 28px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        /* LOGO STYLING */
+        .logo-container {
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: center;
+        }
+        .store-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 2.1rem; 
+            margin-bottom: 6px; 
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .subtitle { 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
         
-        /* Buttons */
-        .btn { display: block; width: 100%; padding: 14px; margin: 10px 0; border-radius: 14px; text-decoration: none; font-weight: bold; color: #fff; }
-        .btn-gum { background: #ff5500; }
-        .btn-kofi { background: #29abe2; }
+        /* CLEAN & STREAMLINED SECTIONS */
+        .section-title {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 15px;
+            text-align: left;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 6px;
+        }
 
-        /* Affiliate Grid */
-        .market-grid { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 30px; }
-        .market-item { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; background: #111; border-radius: 12px; border: 1px solid #222; }
-        .market-item img, .market-item svg { height: 18px; filter: brightness(0) invert(1) opacity(0.6); }
+        #track-list-container {
+            margin: 15px 0 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .track-card {
+            background: rgba(22, 22, 33, 0.45);
+            padding: 12px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.25s ease;
+        }
+        .track-card:hover { 
+            border-color: rgba(0, 242, 254, 0.3);
+            transform: translateY(-1.5px);
+            background: rgba(30, 30, 45, 0.65);
+        }
+        .track-name { 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            color: #f1f5f9;
+            letter-spacing: 0.3px;
+        }
+        .listen-btn {
+            background: #ff5500;
+            padding: 7px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .listen-btn:hover {
+            background: #ff7733;
+        }
 
-        /* Socials */
-        .social-grid { display: flex; gap: 10px; margin-bottom: 20px; }
-        .social-item { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; background: #111; border-radius: 12px; color: #94a3b8; }
-        footer { font-size: 0.7rem; color: #444; }
+        /* YOUTUBE EMBED PLAYER & VERTICAL LIST STYLING */
+        .video-player-wrapper {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            margin-bottom: 15px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+            background: #000;
+        }
+        .video-player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        #video-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .video-card {
+            background: rgba(22, 22, 33, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+        }
+        .video-card:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+            background: rgba(30, 30, 45, 0.65);
+            transform: translateY(-1.5px);
+        }
+        .video-thumb {
+            width: 100px;
+            height: 65px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .video-details {
+            flex: 1;
+        }
+        .video-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #f1f5f9;
+            line-height: 1.3;
+        }
+
+        /* SEE MORE BUTTON STYLING */
+        .see-more-container {
+            margin-bottom: 35px;
+        }
+        .btn-see-more {
+            background: transparent;
+            color: #00f2fe;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-see-more:hover {
+            color: #29b6f6;
+            transform: scale(1.03);
+        }
+
+        /* PREMIUM STORES BUTTONS */
+        .button-group { margin-bottom: 30px; }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin: 10px 0;
+            transition: all 0.25s ease;
+            letter-spacing: 0.5px;
+        }
+        .btn-gumroad {
+            background: linear-gradient(45deg, #ff2a5f, #ff5e00);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(255, 42, 95, 0.2);
+        }
+        .btn-gumroad:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 42, 95, 0.35);
+        }
+        .btn-kofi {
+            background: #29abe2;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(41, 171, 226, 0.2);
+        }
+        .btn-kofi:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(41, 171, 226, 0.35);
+        }
+
+        /* SOCIAL ICON SECTIONS */
+        .social-section {
+            margin-top: 25px;
+            text-align: left;
+        }
+        .social-grid {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .social-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #94a3b8;
+            transition: all 0.25s ease;
+        }
+        .social-item i {
+            font-size: 1.5rem;
+        }
+        .social-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Tactical Glow Effects on Hover */
+        .social-item.ig:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 15px rgba(225, 48, 108, 0.2); }
+        .social-item.fb:hover { border-color: #1877f2; color: #1877f2; box-shadow: 0 0 15px rgba(24, 119, 242, 0.2); }
+        .social-item.tt:hover { border-color: #00f2fe; color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); }
+        .social-item.th:hover { border-color: #ffffff; color: #ffffff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
+        .social-item.pin:hover { border-color: #bd081c; color: #bd081c; box-shadow: 0 0 15px rgba(189, 8, 28, 0.2); }
+        .social-item.yt:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
+        .social-item.sc:hover { border-color: #ff5500; color: #ff5500; box-shadow: 0 0 15px rgba(255, 85, 0, 0.2); }
+
+        /* AFFILIATE HORIZONTAL MARKET STYLING (CERTIFIED GEARS) */
+        .affiliate-market-section {
+            margin-top: 25px;
+            text-align: left;
+        }
+        .market-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .market-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            height: 50px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            flex: 1; /* 👈 ලෝගෝ තුනම ඉඩ බෙදාගෙන ලස්සනට එක පේළියට හිටින්න සෙට් කරා */
+            min-width: 80px;
+        }
+        .market-item img {
+            max-width: 100%;
+            height: 20px;
+            object-fit: contain;
+            /* කළු ලෝගෝ සේරම සුදු කරලා, සයිබර්පන්ක් ප්‍රිමියම් ලුක් එකක් දෙනවා */
+            filter: brightness(0) invert(1) opacity(0.65);
+            transition: all 0.25s ease;
+        }
+        .market-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            border-color: #00f2fe;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+        .market-item:hover img {
+            /* Hover කරද්දී සුපිරියටම Highlight වෙනවා */
+            filter: brightness(0) invert(1) opacity(1);
+        }
+
+        footer { margin-top: 35px; color: #475569; font-size: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 18px; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="./1000098674.webp.jpeg" class="store-logo">
+        <!-- LOGO SECTION -->
+        <div class="logo-container">
+            <img src="./1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
+        </div>
+
         <h1>RHYTHMIC BEATS</h1>
         <div class="subtitle">OPERATE IN SILENCE</div>
         
-        <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" class="btn btn-gum">BUY BEAT PACK</a>
-        <a href="https://ko-fi.com/rhythmicbeats98gmailcom" class="btn btn-kofi">SUPPORT ON KO-FI</a>
-
-        <div class="section-title" style="margin-top: 30px;">Certified Gears</div>
-        <div class="market-grid">
-            <a href="#" class="market-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"></a>
-            <a href="#" class="market-item"><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg"></a>
-            <a href="#" class="market-item">
-                <svg viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg"><path d="M7.1 20.3c0-3.3 2.3-4.8 5.6-4.8 1.6 0 2.9.3 3.6.6v-1.1c0-1.7-1.1-2.6-3.1-2.6-1.5 0-2.9.5-3.8 1.2l-.9-1.8c1.2-.9 3.2-1.6 5.1-1.6 3.5 0 5.4 1.7 5.4 4.8v7.6c0 1.2.1 2.3.4 3.1h-2.6c-.2-.4-.3-1-.3-1.5-.8.7-2.1 1.7-4.1 1.7-3.2 0-5.3-2.1-5.3-5.6zm9.2-.9v-1.7c-.6-.3-1.5-.5-2.6-.5-2 0-3.2.9-3.2 2.7 0 1.7 1 2.6 2.6 2.6 1.6-.1 2.7-.9 3.2-2.1zM23.1 6.3h2.7v19.4h-2.7V6.3zM29.5 8.7h2.7v2.8h-2.7V8.7zm0 5.3h2.7v11.7h-2.7V14zM44.4 20.2c.1 3.1 2.2 4.6 5.1 4.6 1.9 0 3.4-.5 4.4-1.2l.9 1.9c-1.2.9-3.3 1.7-5.7 1.7-4.9 0-7.5-3.2-7.5-7.9s2.6-8.1 7.2-8.1c4.8 0 6.6 3.6 6.6 7.2 0 .4 0 .6-.1.8H44.4zm6.4-2.1c0-2.2-1.1-3.9-3.8-3.9-2.4 0-3.7 1.6-4 3.9h7.8zM59.9 14h2.5l.2 1.7c.9-1.2 2.3-2.1 4.2-2.1 3.5 0 5 2.3 5 5.7v6.4h-2.7v-6.1c0-2.2-.7-3.5-2.7-3.5-1.7 0-2.9 1.1-3.5 2.7v6.9h-2.7V14zM75.1 21.8c.6 2.1 2.3 3.1 4.7 3.1 1.5 0 2.8-.3 3.6-.8l.7 1.9c-1.1.7-2.8 1.2-4.7 1.2-4.1 0-6.9-2.3-6.9-6.4 0-3.8 2.5-6.6 6.3-6.6 3.9 0 6.1 2.6 6.1 6.1 0 .2 0 .4-.1.5H75.1zm6.5-1.9c0-1.6-.8-2.7-2.5-2.7-1.6 0-2.7 1.1-3.6 2.7h6.1zM89.2 21.5c.8 1.4 2.1 2.2 3.8 2.2 1.5 0 2.4-.6 2.4-1.5 0-.9-.7-1.3-2.5-1.7-2.9-.7-4.5-1.5-4.5-3.8 0-2.4 2.1-4 4.8-4 2 0 3.6.7 4.5 1.7l-1.5 1.6c-.7-.8-1.8-1.2-3-1.2-1.3 0-2.1.6-2.1 1.4 0 .8.6 1.1 2.4 1.5 3.1.7 4.7 1.6 4.7 3.9 0 2.6-2.1 4.2-5.2 4.2-2.3 0-4.4-.9-5.3-2.4l1.9-1.9zM104.2 21.5c.8 1.4 2.1 2.2 3.8 2.2 1.5 0 2.4-.6 2.4-1.5 0-.9-.7-1.3-2.5-1.7-2.9-.7-4.5-1.5-4.5-3.8 0-2.4 2.1-4 4.8-4 2 0 3.6.7 4.5 1.7l-1.5 1.6c-.7-.8-1.8-1.2-3-1.2-1.3 0-2.1.6-2.1 1.4 0 .8.6 1.1 2.4 1.5 3.1.7 4.7 1.6 4.7 3.9 0 2.6-2.1 4.2-5.2 4.2-2.3 0-4.4-.9-5.3-2.4l1.9-1.9z"/></svg>
-            </a>
+        <!-- STORES AREA -->
+        <div class="button-group">
+            <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad"><i class="fa-solid fa-cart-shopping"></i> BUY UNTAGGED BEAT PACK ($5)</a>
+            <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi"><i class="fa-solid fa-cup-straw-notch"></i> SUPPORT / BUY ON KO-FI</a>
         </div>
 
-        <div class="section-title">Follow Me</div>
-        <div class="social-grid">
-            <a href="#" class="social-item"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-item"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="social-item"><i class="fab fa-tiktok"></i></a>
-            <a href="#" class="social-item"><i class="fab fa-youtube"></i></a>
+        <!-- TRACKS LIST SECTION -->
+        <div class="section-title">Latest Tracks</div>
+        <div id="track-list-container">
+            <p style="color: #64748b; font-size: 0.85rem;">Loading Epic Tracks...</p>
+        </div>
+        <div class="see-more-container" id="see-more-wrap"></div>
+
+        <!-- YOUTUBE VIDEOS SECTION -->
+        <div class="section-title">Featured Videos</div>
+        
+        <!-- MAIN EMBEDDED PLAYER -->
+        <div class="video-player-wrapper">
+            <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <footer>© 2026 Rhythmic Beat Gen Z.</footer>
+        <!-- VERTICAL VIDEO LIST -->
+        <div id="video-list-container">
+            <p style="color: #64748b; font-size: 0.85rem;">Loading Videos...</p>
+        </div>
+        <div class="see-more-container" id="see-more-videos-wrap"></div>
+
+        <!-- FOLLOW ME ON SECTION -->
+        <div class="social-section">
+            <div class="section-title">Follow Me On</div>
+            <div class="social-grid">
+                <a href="https://www.instagram.com/rythemic_beats_gen_z?igsh=ZWcxeDA2YzRjMnU4" target="_blank" class="social-item ig"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1EKmTesmZm/" target="_blank" class="social-item fb"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@rhythmic_beat_gen?_r=1&_t=ZS-97CWO0NtROW" target="_blank" class="social-item tt"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.threads.com/@rythemic_beats_gen_z" target="_blank" class="social-item th"><i class="fa-brands fa-threads"></i></a>
+                <a href="https://pin.it/6xY4QsdOY" target="_blank" class="social-item pin"><i class="fa-brands fa-pinterest"></i></a>
+            </div>
+        </div>
+
+        <!-- SUBSCRIBE ME SECTION -->
+        <div class="social-section">
+            <div class="section-title">Subscribe Me</div>
+            <div class="social-grid">
+                <a href="https://youtube.com/@rhythmic_beat_gen_z?si=_J9fQ4I0EeTiWBNX" target="_blank" class="social-item yt"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://soundcloud.com/rhythmic_beat_gen_z" target="_blank" class="social-item sc"><i class="fa-brands fa-soundcloud"></i></a>
+            </div>
+        </div>
+
+        <!-- AFFILIATE MARKETPLACE SECTION (CERTIFIED GEARS) -->
+        <div class="affiliate-market-section">
+            <div class="section-title">Certified Gears</div>
+            <div class="market-grid" id="market-container">
+                <p style="color: #64748b; font-size: 0.85rem;">Loading Marketplace...</p>
+            </div>
+        </div>
+        
+        <footer>© 2026 Rhythmic Beat Gen Z. All Rights Reserved. Securely Monitored.</footer>
     </div>
+
+    <script>
+        let cachedTracks = [];
+        let cachedVideos = [];
+        let showAllTracks = false;
+        let showAllVideos = false;
+
+        // 🌟 1. FETCH TRACKS FUNCTION
+        async function loadTracks() {
+            try {
+                const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Gist data fetch failed");
+                const content = await res.json();
+                
+                cachedTracks = content.sort((a, b) => {
+                    let dateA = a.timestamp || a.time ? new Date(a.timestamp || a.time) : 0;
+                    let dateB = b.timestamp || b.time ? new Date(b.timestamp || b.time) : 0;
+                    return dateB - dateA;
+                });
+                renderTracks();
+            } catch (error) {
+                console.error(error);
+                document.getElementById('track-list-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load tracks.</p>`;
+            }
+        }
+
+        function renderTracks() {
+            const container = document.getElementById('track-list-container');
+            const seeMoreWrap = document.getElementById('see-more-wrap');
+            container.innerHTML = ''; seeMoreWrap.innerHTML = '';
+
+            const tracksToDisplay = showAllTracks ? cachedTracks : cachedTracks.slice(0, 5);
+            tracksToDisplay.forEach(track => {
+                const card = document.createElement('div');
+                card.className = 'track-card';
+                card.innerHTML = `<span class="track-name">${track.name}</span><a href="${track.link}" target="_blank" class="listen-btn">PLAY</a>`;
+                container.appendChild(card);
+            });
+
+            if (cachedTracks.length > 5) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-see-more';
+                btn.innerHTML = showAllTracks ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
+                btn.addEventListener('click', () => { showAllTracks = !showAllTracks; renderTracks(); });
+                seeMoreWrap.appendChild(btn);
+            }
+        }
+
+        // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION (FIXED MASTER RAW LINK & CACHE BYPASS)
+        async function loadVideos() {
+            try {
+                const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
+                const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
+                
+                if (!res.ok) throw new Error("Video Gist data fetch failed");
+                const content = await res.json();
+                
+                cachedVideos = content.sort((a, b) => {
+                    let dateA = a.timestamp ? new Date(a.timestamp) : 0;
+                    let dateB = b.timestamp ? new Date(b.timestamp) : 0;
+                    return dateB - dateA;
+                });
+                
+                if(cachedVideos.length > 0) {
+                    setMainVideo(cachedVideos[0].videoId);
+                }
+                
+                renderVideos();
+            } catch (error) {
+                console.error(error);
+                document.getElementById('video-list-container').innerHTML = `<p style="color: #ff2a5f; font-size: 0.85rem;">Failed to load videos.</p>`;
+            }
+        }
+
+        function setMainVideo(id) {
+            document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${id}?autoplay=0`;
+        }
+
+        function renderVideos() {
+            const container = document.getElementById('video-list-container');
+            const seeMoreVideosWrap = document.getElementById('see-more-videos-wrap');
+            container.innerHTML = ''; seeMoreVideosWrap.innerHTML = '';
+
+            const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
+
+            videosToDisplay.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                const thumbUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
+                
+                card.innerHTML = `
+                    <img src="${thumbUrl}" class="video-thumb" alt="thumbnail">
+                    <div class="video-details">
+                        <div class="video-title">${video.title}</div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    setMainVideo(video.videoId);
+                    document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+
+                container.appendChild(card);
+            });
+
+            if (cachedVideos.length > 4) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-see-more';
+                btn.innerHTML = showAllVideos ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
+                btn.addEventListener('click', () => { showAllVideos = !showAllVideos; renderVideos(); });
+                seeMoreVideosWrap.appendChild(btn);
+            }
+        }
+
+        // 🌟 3. FIXED AFFILIATE MARKETS FUNCTION (DIRECT INJECT)
+        async function loadAffiliateMarkets() {
+            const markets = [
+              {
+                "companyName": "Amazon",
+                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+                "affiliateLink": "#"
+              },
+              {
+                "companyName": "Fiverr",
+                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg",
+                "affiliateLink": "#"
+              },
+              {
+                "companyName": "AliExpress",
+                // 💡 කෙලින්ම වැඩ කරන සහ පට්ට පැහැදිලි AliExpress නිල සුදු SVG ලෝගෝ ලින්ක් එක දාලා සෙට් කරා මචං
+                "logoUrl": "https://cdn.worldvectorlogo.com/logos/aliexpress-4.svg",
+                "affiliateLink": "#"
+              }
+            ];
+            
+            const container = document.getElementById('market-container');
+            container.innerHTML = ''; 
+
+            markets.forEach(market => {
+                const link = document.createElement('a');
+                link.className = 'market-item';
+                link.href = market.affiliateLink;
+                link.innerHTML = `<img src="${market.logoUrl}" alt="${market.companyName}">`;
+                
+                link.addEventListener('click', (e) => {
+                    if(market.affiliateLink === '#') {
+                        e.preventDefault(); 
+                        alert(`${market.companyName} Affiliate Link is Coming Soon! 🔥`);
+                    }
+                });
+
+                container.appendChild(link);
+            });
+        }
+        
+        loadTracks();
+        loadVideos();
+        loadAffiliateMarkets();
+
+        /* MAXIMUM SECURITY SHIELD */
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+    </script>
 </body>
 </html>
