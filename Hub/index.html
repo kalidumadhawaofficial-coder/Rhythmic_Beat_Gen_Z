@@ -4,66 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rhythmic Hub</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #07070a; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; }
+        nav { display: flex; justify-content: space-around; padding: 10px; border-bottom: 1px solid #333; }
+        .nav-btn { background: none; border: none; color: #00d4ff; cursor: pointer; font-weight: bold; }
+        .page { margin-top: 20px; text-align: center; }
+        .video-card { margin-bottom: 30px; background: #1a1a1a; padding: 10px; border-radius: 10px; }
+        .video-card iframe { width: 100%; height: 250px; border-radius: 10px; }
+        .reactions { margin-top: 10px; display: flex; justify-content: center; gap: 10px; }
+        .reactions button { background: #333; border: none; padding: 5px 10px; border-radius: 5px; color: #fff; cursor: pointer; }
+        .reactions button.active { background: #00d4ff; color: #000; }
+        .neon-input { width: 90%; padding: 10px; margin: 10px 0; background: #1a1a1a; border: 1px solid #00d4ff; color: #fff; }
+        .neon-btn { background: #00d4ff; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; }
+    </style>
 </head>
 <body>
     <nav>
         <button class="nav-btn" onclick="show('shorts')">Shorts</button>
         <button class="nav-btn" onclick="show('rate')">Rate</button>
         <button class="nav-btn" onclick="show('suggest')">Suggest</button>
-        <button class="nav-btn" onclick="show('contact')">Contact</button>
     </nav>
-
-    <div id="shorts" class="page"><div id="shorts-container" class="shorts-container"></div></div>
-    
+    <div id="shorts" class="page"><div id="shorts-container"></div></div>
     <div id="rate" class="page" style="display:none;">
-        <img src="1000098019.webp" class="logo">
-        <h2 class="theme-text">OPERATE IN SILENCE</h2>
-        <div class="star-rating" id="star-rating">
-            <span onclick="setRating(5)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(1)">★</span>
-        </div>
+        <div id="star-rating"><span onclick="setRating(5)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(1)">★</span></div>
         <textarea id="rate-text" class="neon-input" placeholder="Feedback..."></textarea>
-        <button class="neon-btn" onclick="submitData('rate')">📩</button>
+        <button class="neon-btn" onclick="submitData('rate')">SUBMIT RATING</button>
     </div>
-
     <div id="suggest" class="page" style="display:none;">
-        <img src="1000098019.webp" class="logo">
-        <h2 class="theme-text">OPERATE IN SILENCE</h2>
-        <textarea id="suggest-text" class="neon-input" placeholder="Suggest..."></textarea>
-        <button class="neon-btn" onclick="submitData('suggest')">🚀</button>
+        <textarea id="suggest-text" class="neon-input" placeholder="Suggestion..."></textarea>
+        <button class="neon-btn" onclick="submitData('suggest')">SUBMIT SUGGESTION</button>
     </div>
-
-    <div id="contact" class="page" style="display:none;">
-        <img src="1000098019.webp" class="logo">
-        <h2 class="theme-text">OPERATE IN SILENCE</h2>
-        <p>Email: <a href="mailto:rhythmicbeats98@gmail.com" style="color:#00d4ff">rhythmicbeats98@gmail.com</a></p>
-    </div>
-
     <script>
+        const GIST_RAW_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/db979807d4a0a16b3320ff9d81522c26/raw/148587cd000817257c36d4c0d07512cc3e7d10dc/shorts.js";
         let currentRating = 0;
-        function setRating(r) { currentRating = r; alert('Rating set to ' + r); }
-        
+        function setRating(r) { currentRating = r; }
+        async function loadHubVideos() {
+            try {
+                const response = await fetch(GIST_RAW_URL + "?nocache=" + new Date().getTime());
+                const videos = await response.json();
+                const container = document.getElementById('shorts-container');
+                container.innerHTML = '';
+                videos.sort((a, b) => new Date(b.date) - new Date(a.date));
+                videos.forEach(v => {
+                    container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`;
+                });
+            } catch (e) { console.error(e); }
+        }
         async function submitData(type) {
             const url = "https://script.google.com/macros/s/AKfycbyPp_Ad84bu4DA-wnhqrUM7rWZ6QCRcgK-5paDDA4NV7DgUoH3_NMaC2QrKMz1FWDhCZA/exec";
             const text = type === 'rate' ? document.getElementById('rate-text').value : document.getElementById('suggest-text').value;
             const rating = type === 'rate' ? currentRating : 'N/A';
-            
-            await fetch(url, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ rating: rating, suggestion: text })
-            });
+            const formData = new FormData();
+            formData.append('rating', rating);
+            formData.append('suggestion', text);
+            await fetch(url, { method: "POST", body: new URLSearchParams(formData) });
             alert("Sent successfully!");
         }
-
-        const videos = [{"id": "usCzbEXXUTg", "date": "2026-06-27T15:00:00"}, {"id": "IpDRz5L8j0k", "date": "2026-06-26T15:00:00"}, {"id": "ZTAV5tCvHf8", "date": "2026-06-25T15:00:00"}, {"id": "z-cLJCeN290", "date": "2026-06-24T15:00:00"}, {"id": "MaWsDYHp7Ok", "date": "2026-06-23T15:00:00"}, {"id": "GSWtMeceJRE", "date": "2026-06-22T15:00:00"}, {"id": "rC4IPpp7ZKY", "date": "2026-06-21T15:00:00"}, {"id": "7oQQoAvMxCo", "date": "2026-06-20T15:00:00"}, {"id": "2Vy7cZ_VG_g", "date": "2026-06-19T15:00:00"}];
         function show(id) { document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); document.getElementById(id).style.display = 'block'; }
         function react(btn) { btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
-        
-        const container = document.getElementById('shorts-container');
-        videos.sort((a, b) => new Date(b.date) - new Date(a.date));
-        videos.forEach(v => { container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; });
+        loadHubVideos();
     </script>
 </body>
 </html>
