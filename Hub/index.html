@@ -13,10 +13,25 @@
         <button class="nav-btn" onclick="show('contact')">Contact</button>
     </nav>
 
-    <div id="shorts" class="page">
-        <div id="shorts-container" class="shorts-container"></div>
+    <!-- Shorts Page -->
+    <div id="shorts" class="page"><div id="shorts-container" class="shorts-container"></div></div>
+
+    <!-- Other Pages with Logo & Theme -->
+    <div id="rate" class="page" style="display:none;">
+        <img src="1000098019.webp" class="logo">
+        <h2 class="theme-text">OPERATE IN SILENCE</h2>
+        <h1>Rate</h1>
     </div>
-    <!-- Anith pages... -->
+    <div id="suggest" class="page" style="display:none;">
+        <img src="1000098019.webp" class="logo">
+        <h2 class="theme-text">OPERATE IN SILENCE</h2>
+        <h1>Suggest</h1>
+    </div>
+    <div id="contact" class="page" style="display:none;">
+        <img src="1000098019.webp" class="logo">
+        <h2 class="theme-text">OPERATE IN SILENCE</h2>
+        <h1>Contact</h1>
+    </div>
 
     <script src="YOUR_RAW_GIST_LINK"></script>
     <script>
@@ -24,7 +39,7 @@
             document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
-
+        
         const container = document.getElementById('shorts-container');
         videos.sort((a, b) => new Date(b.date) - new Date(a.date));
         videos.forEach(v => {
@@ -32,17 +47,12 @@
                 <div class="video-card">
                     <iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>
                     <div class="reactions">
-                        <button onclick="react('${v.id}', 'heart')">❤️</button>
-                        <button onclick="react('${v.id}', 'like')">👍</button>
-                        <button onclick="react('${v.id}', 'dislike')">👎</button>
+                        <button onclick="alert('Liked!')">❤️</button>
+                        <button onclick="alert('Liked!')">👍</button>
+                        <button onclick="alert('Disliked!')">👎</button>
                     </div>
                 </div>`;
         });
-
-        function react(id, type) {
-            // Methana api localstorage use karala e user ge reactions save karamu
-            alert('You ' + type + 'd video: ' + id);
-        }
     </script>
 </body>
 </html>
