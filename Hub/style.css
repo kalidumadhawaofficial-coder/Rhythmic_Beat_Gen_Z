@@ -1,9 +1,8 @@
-body { font-family: sans-serif; margin: 0; padding-top: 60px; background: #121212; color: #fff; }
-nav { position: fixed; top: 0; width: 100%; background: #000; padding: 15px 0; display: flex; justify-content: center; gap: 15px; z-index: 1000; }
-nav a { color: #fff; text-decoration: none; font-weight: bold; }
-section { padding: 40px 20px; text-align: center; border-bottom: 1px solid #333; }
-
-.shorts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; justify-items: center; }
-.shorts-container iframe { width: 100%; max-width: 315px; height: 560px; border-radius: 12px; }
-
+body { background: #050505; color: #fff; margin: 0; padding-top: 80px; font-family: sans-serif; }
+nav { position: fixed; top: 0; width: 100%; background: #111; display: flex; justify-content: center; padding: 15px; gap: 20px; border-bottom: 1px solid #333; z-index: 1000; }
+button { background: none; border: none; color: #aaa; cursor: pointer; font-weight: bold; }
+button:hover { color: #fff; }
+.page { padding: 20px; text-align: center; }
+.shorts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+iframe { width: 100%; max-width: 315px; height: 560px; border-radius: 12px; }
 @media (max-width: 600px) { .shorts-container { grid-template-columns: 1fr; } }
