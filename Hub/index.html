@@ -17,23 +17,30 @@
     <div id="shorts" class="page">
         <div id="shorts-container" class="shorts-container"></div>
     </div>
-    <div id="rate" class="page" style="display:none;"><h1>Rate</h1><p>Coming soon...</p></div>
-    <div id="suggest" class="page" style="display:none;"><h1>Suggest</h1><p>Coming soon...</p></div>
-    <div id="contact" class="page" style="display:none;"><h1>Contact</h1><p><a href="mailto:your-email@gmail.com">Send Email</a></p></div>
+    <div id="rate" class="page" style="display:none;"><h1>Rate</h1></div>
+    <div id="suggest" class="page" style="display:none;"><h1>Suggest</h1></div>
+    <div id="contact" class="page" style="display:none;"><h1>Contact</h1></div>
 
     <script>
         function show(id) {
             document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
-    </script>
-    
-    <!-- Oya Gist eke thiyena Raw link eka methana danna -->
-    <script src="PASTE_YOUR_RAW_GIST_LINK_HERE"></script>
-    
-    <script>
+
+        // Gist eke thiyena data tika direct mehema danna (CORS prashna nathuwa wada karanawa)
+        const videos = [
+            {"id": "usCzbEXXUTg", "date": "2026-06-27T15:00:00"},
+            {"id": "IpDRz5L8j0k", "date": "2026-06-26T15:00:00"},
+            {"id": "ZTAV5tCvHf8", "date": "2026-06-25T15:00:00"},
+            {"id": "z-cLJCeN290", "date": "2026-06-24T15:00:00"},
+            {"id": "MaWsDYHp7Ok", "date": "2026-06-23T15:00:00"},
+            {"id": "GSWtMeceJRE", "date": "2026-06-22T15:00:00"},
+            {"id": "rC4IPpp7ZKY", "date": "2026-06-21T15:00:00"},
+            {"id": "7oQQoAvMxCo", "date": "2026-06-20T15:00:00"},
+            {"id": "2Vy7cZ_VG_g", "date": "2026-06-19T15:00:00"}
+        ];
+
         const container = document.getElementById('shorts-container');
-        // 'videos' variable eka Gist eken load wenawa
         videos.sort((a, b) => new Date(b.date) - new Date(a.date));
         videos.forEach(v => {
             container.innerHTML += `<iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>`;
