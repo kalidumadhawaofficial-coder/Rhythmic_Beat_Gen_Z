@@ -44,37 +44,33 @@
         let currentRating = 0;
         function setRating(r) { currentRating = r; alert('Rating set to ' + r); }
         
-        // Google Sheet එකට data යවන function එක
         async function submitData(type) {
             const url = "https://script.google.com/macros/s/AKfycbyPp_Ad84bu4DA-wnhqrUM7rWZ6QCRcgK-5paDDA4NV7DgUoH3_NMaC2QrKMz1FWDhCZA/exec";
             const text = type === 'rate' ? document.getElementById('rate-text').value : document.getElementById('suggest-text').value;
             const rating = type === 'rate' ? currentRating : 'N/A';
-            const formData = new FormData();
-            formData.append('rating', rating);
-            formData.append('suggestion', text);
             
-            await fetch(url, { method: "POST", body: new URLSearchParams(formData) });
+            await fetch(url, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ rating: rating, suggestion: text })
+            });
             alert("Sent successfully!");
-        }
-
-        // Gist එකෙන් videos ලෝඩ් කරන function එක
-        async function loadVideos() {
-            try {
-                const response = await fetch(GIST_RAW_URL + "?nocache=" + new Date().getTime());
-                const videos = await response.json();
-                const container = document.getElementById('shorts-container');
-                container.innerHTML = '';
-                videos.sort((a, b) => new Date(b.date) - new Date(a.date));
-                videos.forEach(v => { 
-                    container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; 
-                });
-            } catch (e) { console.error("Error loading videos:", e); }
         }
 
         function show(id) { document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); document.getElementById(id).style.display = 'block'; }
         function react(btn) { btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
         
-        loadVideos(); // page එක load වෙනකොට මේක run වෙනවා
+        async function loadHubVideos() {
+            const response = await fetch(GIST_RAW_URL + "?nocache=" + new Date().getTime());
+            const videos = await response.json();
+            const container = document.getElementById('shorts-container');
+            container.innerHTML = '';
+            videos.sort((a, b) => new Date(b.date) - new Date(a.date));
+            videos.forEach(v => { container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; });
+        }
+        
+        loadHubVideos();
     </script>
 </body>
 </html>
