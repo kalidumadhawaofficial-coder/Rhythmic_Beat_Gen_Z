@@ -4,42 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rhythmic Hub</title>
-    <style>
-        body { background: #07070a; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; }
-        nav { display: flex; justify-content: space-around; padding: 15px; border-bottom: 1px solid #333; }
-        .nav-btn { background: none; border: none; color: #00d4ff; cursor: pointer; font-weight: bold; font-size: 1rem; }
-        .page { margin-top: 20px; text-align: center; }
-        .video-card { margin-bottom: 30px; background: #1a1a1a; padding: 15px; border-radius: 15px; }
-        .video-card iframe { width: 100%; height: 250px; border-radius: 10px; }
-        .reactions { margin-top: 10px; display: flex; justify-content: center; gap: 15px; }
-        .reactions button { background: #333; border: none; padding: 8px 15px; border-radius: 5px; color: #fff; cursor: pointer; }
-        .reactions button.active { background: #00d4ff; color: #000; }
-        .neon-input { width: 90%; padding: 12px; margin: 10px 0; background: #1a1a1a; border: 1px solid #00d4ff; color: #fff; border-radius: 8px; }
-        .neon-btn { background: #00d4ff; border: none; padding: 12px 25px; cursor: pointer; font-weight: bold; border-radius: 8px; color: #000; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
         <button class="nav-btn" onclick="show('shorts')">Shorts</button>
         <button class="nav-btn" onclick="show('rate')">Rate</button>
         <button class="nav-btn" onclick="show('suggest')">Suggest</button>
+        <button class="nav-btn" onclick="show('contact')">Contact</button>
     </nav>
 
-    <div id="shorts" class="page"><div id="shorts-container"></div></div>
+    <div id="shorts" class="page"><div id="shorts-container" class="shorts-container"></div></div>
     
     <div id="rate" class="page" style="display:none;">
-        <h3 style="color:#00d4ff;">Rate Experience</h3>
-        <div id="star-rating" style="font-size: 2rem; cursor: pointer; margin-bottom: 10px;">
+        <img src="1000098019.webp" class="logo">
+        <h2 class="theme-text">OPERATE IN SILENCE</h2>
+        <div class="star-rating" id="star-rating">
             <span onclick="setRating(5)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(1)">★</span>
         </div>
         <textarea id="rate-text" class="neon-input" placeholder="Feedback..."></textarea>
-        <button class="neon-btn" onclick="submitData('rate')">SUBMIT RATING</button>
+        <button class="neon-btn" onclick="submitData('rate')">📩</button>
     </div>
 
     <div id="suggest" class="page" style="display:none;">
-        <h3 style="color:#00d4ff;">Suggestions</h3>
-        <textarea id="suggest-text" class="neon-input" placeholder="What's next?"></textarea>
-        <button class="neon-btn" onclick="submitData('suggest')">SUBMIT SUGGESTION</button>
+        <img src="1000098019.webp" class="logo">
+        <h2 class="theme-text">OPERATE IN SILENCE</h2>
+        <textarea id="suggest-text" class="neon-input" placeholder="Suggest..."></textarea>
+        <button class="neon-btn" onclick="submitData('suggest')">🚀</button>
+    </div>
+
+    <div id="contact" class="page" style="display:none;">
+        <img src="1000098019.webp" class="logo">
+        <h2 class="theme-text">OPERATE IN SILENCE</h2>
+        <p>Email: <a href="mailto:rhythmicbeats98@gmail.com" style="color:#00d4ff">rhythmicbeats98@gmail.com</a></p>
     </div>
 
     <script>
@@ -47,19 +44,7 @@
         let currentRating = 0;
         function setRating(r) { currentRating = r; alert('Rating set to ' + r); }
         
-        async function loadHubVideos() {
-            try {
-                const response = await fetch(GIST_RAW_URL + "?nocache=" + new Date().getTime());
-                const videos = await response.json();
-                const container = document.getElementById('shorts-container');
-                container.innerHTML = '';
-                videos.sort((a, b) => new Date(b.date) - new Date(a.date));
-                videos.forEach(v => {
-                    container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`;
-                });
-            } catch (e) { console.error("Error loading videos:", e); }
-        }
-
+        // Google Sheet එකට data යවන function එක
         async function submitData(type) {
             const url = "https://script.google.com/macros/s/AKfycbyPp_Ad84bu4DA-wnhqrUM7rWZ6QCRcgK-5paDDA4NV7DgUoH3_NMaC2QrKMz1FWDhCZA/exec";
             const text = type === 'rate' ? document.getElementById('rate-text').value : document.getElementById('suggest-text').value;
@@ -70,14 +55,26 @@
             
             await fetch(url, { method: "POST", body: new URLSearchParams(formData) });
             alert("Sent successfully!");
-            document.getElementById('rate-text').value = '';
-            document.getElementById('suggest-text').value = '';
+        }
+
+        // Gist එකෙන් videos ලෝඩ් කරන function එක
+        async function loadVideos() {
+            try {
+                const response = await fetch(GIST_RAW_URL + "?nocache=" + new Date().getTime());
+                const videos = await response.json();
+                const container = document.getElementById('shorts-container');
+                container.innerHTML = '';
+                videos.sort((a, b) => new Date(b.date) - new Date(a.date));
+                videos.forEach(v => { 
+                    container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; 
+                });
+            } catch (e) { console.error("Error loading videos:", e); }
         }
 
         function show(id) { document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); document.getElementById(id).style.display = 'block'; }
         function react(btn) { btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
         
-        loadHubVideos();
+        loadVideos(); // page එක load වෙනකොට මේක run වෙනවා
     </script>
 </body>
 </html>
