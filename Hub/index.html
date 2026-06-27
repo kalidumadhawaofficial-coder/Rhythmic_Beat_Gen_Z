@@ -1,40 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rhythmic Hub</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav>
-        <button onclick="show('shorts')">Shorts</button>
-        <button onclick="show('rate')">Rate</button>
-        <button onclick="show('suggest')">Suggest</button>
-        <button onclick="show('contact')">Contact</button>
-    </nav>
+<!-- Shorts container -->
+<div id="shorts" class="page">
+    <div id="shorts-container" class="shorts-container"></div>
+</div>
 
-    <div id="shorts" class="page"><div id="shorts-container" class="shorts-container"></div></div>
-    <div id="rate" class="page" style="display:none;"><h1>Rate</h1><p>Coming soon...</p></div>
-    <div id="suggest" class="page" style="display:none;"><h1>Suggest</h1><p>Coming soon...</p></div>
-    <div id="contact" class="page" style="display:none;"><h1>Contact</h1><p><a href="mailto:your-email@gmail.com">Send Email</a></p></div>
-
-    <script>
-        function show(id) {
-            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
-        }
-        
-        // METHANATA OYAGE RAW GIST LINK EKA DANNA
-        fetch('PASTE_YOUR_RAW_GIST_LINK_HERE')
-            .then(response => response.json())
-            .then(videos => {
-                videos.sort((a, b) => new Date(b.date) - new Date(a.date));
-                const container = document.getElementById('shorts-container');
-                videos.forEach(v => {
-                    container.innerHTML += `<iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>`;
-                });
-            });
-    </script>
-</body>
-</html>
+<!-- Scripts (Gist eka load karanna) -->
+<script src="PASTE_YOUR_RAW_GIST_LINK_HERE"></script>
+<script>
+    const container = document.getElementById('shorts-container');
+    // videos kiyana eka dan Gist eken automatic enawa
+    videos.sort((a, b) => new Date(b.date) - new Date(a.date));
+    videos.forEach(v => {
+        container.innerHTML += `<iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>`;
+    });
+</script>
