@@ -306,6 +306,34 @@
         .btn-kofi { background: #29abe2; color: #ffffff; box-shadow: 0 4px 15px rgba(41, 171, 226, 0.2); }
         .btn-kofi:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(41, 171, 226, 0.35); }
 
+        /* HUB SECTION */
+        .hub-section {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            margin: 20px 0;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+        .hub-link-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 12px 25px;
+            background-color: #00f2fe;
+            color: #07070a;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+        .hub-link-btn:hover {
+            background-color: #ffffff;
+            transform: scale(1.05);
+        }
+
         /* SOCIAL ICON SECTIONS */
         .social-section { margin-top: 25px; text-align: left; }
         .social-grid { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
@@ -390,6 +418,13 @@
             <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi">SUPPORT / BUY ON KO-FI</a>
         </div>
 
+        <!-- NEW HUB SECTION -->
+        <div class="hub-section">
+            <h3 style="color: #ffffff; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;">Rhythmic Beats Hub</h3>
+            <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 5px;">සංගීත ලෝකයට එකතු වෙන්න...</p>
+            <a href="Hub/index.html" class="hub-link-btn">Go to Hub</a>
+        </div>
+
         <div class="section-title">Latest Tracks</div>
         <div id="track-list-container">
             <p style="color: #64748b; font-size: 0.85rem;">Securing Beats...</p>
@@ -400,7 +435,8 @@
                 <div class="video-player-wrapper">
             <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div id="video-list-container"><p style="color: #64748b; font-size: 0.85rem;">Securing Videos...</p></div>
+        <div id="video-list-container"><p style="color: #64748b; font-size: 0.85rem;">Securing Videos...</p>
+        </div>
         <div class="see-more-container" id="see-more-videos-wrap"></div>
 
         <div class="social-section">
@@ -574,4 +610,3 @@
     </script>
 </body>
 </html>
-
