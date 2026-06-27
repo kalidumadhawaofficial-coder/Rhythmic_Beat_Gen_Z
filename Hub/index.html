@@ -2,49 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rhythmic Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <button onclick="show('shorts')">Shorts</button>
-        <button onclick="show('rate')">Rate</button>
-        <button onclick="show('suggest')">Suggest</button>
-        <button onclick="show('contact')">Contact</button>
+        <button class="nav-btn" onclick="show('shorts')">Shorts</button>
+        <button class="nav-btn" onclick="show('rate')">Rate</button>
+        <button class="nav-btn" onclick="show('suggest')">Suggest</button>
+        <button class="nav-btn" onclick="show('contact')">Contact</button>
     </nav>
 
     <div id="shorts" class="page">
         <div id="shorts-container" class="shorts-container"></div>
     </div>
-    <div id="rate" class="page" style="display:none;"><h1>Rate</h1></div>
-    <div id="suggest" class="page" style="display:none;"><h1>Suggest</h1></div>
-    <div id="contact" class="page" style="display:none;"><h1>Contact</h1></div>
+    <!-- Anith pages... -->
 
+    <script src="YOUR_RAW_GIST_LINK"></script>
     <script>
         function show(id) {
             document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
 
-        // Gist eke thiyena data tika direct mehema danna (CORS prashna nathuwa wada karanawa)
-        const videos = [
-            {"id": "usCzbEXXUTg", "date": "2026-06-27T15:00:00"},
-            {"id": "IpDRz5L8j0k", "date": "2026-06-26T15:00:00"},
-            {"id": "ZTAV5tCvHf8", "date": "2026-06-25T15:00:00"},
-            {"id": "z-cLJCeN290", "date": "2026-06-24T15:00:00"},
-            {"id": "MaWsDYHp7Ok", "date": "2026-06-23T15:00:00"},
-            {"id": "GSWtMeceJRE", "date": "2026-06-22T15:00:00"},
-            {"id": "rC4IPpp7ZKY", "date": "2026-06-21T15:00:00"},
-            {"id": "7oQQoAvMxCo", "date": "2026-06-20T15:00:00"},
-            {"id": "2Vy7cZ_VG_g", "date": "2026-06-19T15:00:00"}
-        ];
-
         const container = document.getElementById('shorts-container');
         videos.sort((a, b) => new Date(b.date) - new Date(a.date));
         videos.forEach(v => {
-            container.innerHTML += `<iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>`;
+            container.innerHTML += `
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>
+                    <div class="reactions">
+                        <button onclick="react('${v.id}', 'heart')">❤️</button>
+                        <button onclick="react('${v.id}', 'like')">👍</button>
+                        <button onclick="react('${v.id}', 'dislike')">👎</button>
+                    </div>
+                </div>`;
         });
+
+        function react(id, type) {
+            // Methana api localstorage use karala e user ge reactions save karamu
+            alert('You ' + type + 'd video: ' + id);
+        }
     </script>
 </body>
 </html>
