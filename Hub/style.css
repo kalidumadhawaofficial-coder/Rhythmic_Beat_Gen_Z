@@ -1,64 +1,9 @@
-/* General reset */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
+body { font-family: sans-serif; margin: 0; padding-top: 60px; background: #121212; color: #fff; }
+nav { position: fixed; top: 0; width: 100%; background: #000; padding: 15px 0; display: flex; justify-content: center; gap: 15px; z-index: 1000; }
+nav a { color: #fff; text-decoration: none; font-weight: bold; }
+section { padding: 40px 20px; text-align: center; border-bottom: 1px solid #333; }
 
-/* Sticky Navigation Bar */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #000;
-    padding: 15px 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    z-index: 1000;
-}
+.shorts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; justify-items: center; }
+.shorts-container iframe { width: 100%; max-width: 315px; height: 560px; border-radius: 12px; }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #ff0000; /* YouTube red hover effect */
-}
-
-/* Section styling */
-section {
-    padding: 80px 20px;
-    text-align: center;
-    min-height: 300px;
-}
-
-/* Shorts section adjustment */
-#shorts {
-    padding-top: 100px;
-    background-color: #fff;
-}
-
-/* Responsive Gist/Shorts container */
-.gist {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-/* Spacing for other sections */
-#rate, #suggest, #contact {
-    border-top: 1px solid #ddd;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 600px) {
-    nav { gap: 10px; }
-    nav a { font-size: 14px; }
-    section { padding: 60px 10px; }
-}
+@media (max-width: 600px) { .shorts-container { grid-template-columns: 1fr; } }
