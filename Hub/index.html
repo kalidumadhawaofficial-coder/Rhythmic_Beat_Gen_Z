@@ -19,17 +19,20 @@
     <div id="rate" class="page" style="display:none;">
         <img src="1000098019.webp" class="logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
-        <p>Rate your experience with Rhythmic Hub!</p>
-        <input type="range" min="1" max="5" class="slider">
+        <div class="star-rating">
+            <span onclick="rate(5)">★</span><span onclick="rate(4)">★</span><span onclick="rate(3)">★</span><span onclick="rate(2)">★</span><span onclick="rate(1)">★</span>
+        </div>
+        <textarea class="neon-input" placeholder="Your feedback..."></textarea>
+        <button class="neon-btn">SEND RATING 📩</button>
     </div>
-    
+
     <div id="suggest" class="page" style="display:none;">
         <img src="1000098019.webp" class="logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
-        <textarea placeholder="Suggest something new..."></textarea>
-        <button class="submit-btn">Send Suggestion</button>
+        <textarea class="neon-input" placeholder="Suggest something new..."></textarea>
+        <button class="neon-btn">SEND SUGGESTION 🚀</button>
     </div>
-    
+
     <div id="contact" class="page" style="display:none;">
         <img src="1000098019.webp" class="logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
@@ -41,33 +44,11 @@
             document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
-
+        function rate(stars) { alert('Rated ' + stars + ' stars!'); }
         function react(btn) {
             btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
-
-        const videos = [
-            {"id": "usCzbEXXUTg", "date": "2026-06-27T15:00:00"}, {"id": "IpDRz5L8j0k", "date": "2026-06-26T15:00:00"},
-            {"id": "ZTAV5tCvHf8", "date": "2026-06-25T15:00:00"}, {"id": "z-cLJCeN290", "date": "2026-06-24T15:00:00"},
-            {"id": "MaWsDYHp7Ok", "date": "2026-06-23T15:00:00"}, {"id": "GSWtMeceJRE", "date": "2026-06-22T15:00:00"},
-            {"id": "rC4IPpp7ZKY", "date": "2026-06-21T15:00:00"}, {"id": "7oQQoAvMxCo", "date": "2026-06-20T15:00:00"},
-            {"id": "2Vy7cZ_VG_g", "date": "2026-06-19T15:00:00"}
-        ];
-
-        const container = document.getElementById('shorts-container');
-        videos.sort((a, b) => new Date(b.date) - new Date(a.date));
-        videos.forEach(v => {
-            container.innerHTML += `
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>
-                    <div class="reactions">
-                        <button onclick="react(this)">❤️</button>
-                        <button onclick="react(this)">👍</button>
-                        <button onclick="react(this)">👎</button>
-                    </div>
-                </div>`;
-        });
     </script>
 </body>
 </html>
