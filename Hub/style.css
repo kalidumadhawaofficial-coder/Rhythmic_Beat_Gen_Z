@@ -1,28 +1,64 @@
+/* General reset */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding-top: 60px; /* Nav bar ekata ida thiyanna */
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
+/* Sticky Navigation Bar */
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #333;
+    background-color: #000;
     padding: 15px 0;
     display: flex;
     justify-content: center;
     gap: 20px;
+    z-index: 1000;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
+nav a:hover {
+    color: #ff0000; /* YouTube red hover effect */
+}
+
+/* Section styling */
 section {
-    padding: 50px;
-    height: 400px; /* Testing walata size eka */
-    border-bottom: 1px solid #ccc;
+    padding: 80px 20px;
+    text-align: center;
+    min-height: 300px;
+}
+
+/* Shorts section adjustment */
+#shorts {
+    padding-top: 100px;
+    background-color: #fff;
+}
+
+/* Responsive Gist/Shorts container */
+.gist {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Spacing for other sections */
+#rate, #suggest, #contact {
+    border-top: 1px solid #ddd;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    nav { gap: 10px; }
+    nav a { font-size: 14px; }
+    section { padding: 60px 10px; }
 }
