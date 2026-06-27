@@ -1,8 +1,8 @@
-body { background: #050505; color: #fff; margin: 0; padding-top: 80px; font-family: sans-serif; }
+body { background-color: #050505 !important; color: #fff; margin: 0; padding-top: 80px; font-family: sans-serif; }
 nav { position: fixed; top: 0; width: 100%; background: #111; display: flex; justify-content: center; padding: 15px; gap: 20px; border-bottom: 1px solid #333; z-index: 1000; }
-button { background: none; border: none; color: #aaa; cursor: pointer; font-weight: bold; }
+button { background: none; border: none; color: #aaa; cursor: pointer; font-weight: bold; font-size: 14px; }
 button:hover { color: #fff; }
 .page { padding: 20px; text-align: center; }
-.shorts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-iframe { width: 100%; max-width: 315px; height: 560px; border-radius: 12px; }
+.shorts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; justify-items: center; }
+iframe { width: 100%; max-width: 315px; height: 560px; border-radius: 12px; background: #000; }
 @media (max-width: 600px) { .shorts-container { grid-template-columns: 1fr; } }
