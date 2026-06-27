@@ -34,7 +34,7 @@
     <div id="contact" class="page" style="display:none;">
         <img src="1000098019.webp" class="logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
-        <p>Email: <a href="mailto:rhythmic@beats.com" style="color:#00d4ff">rhythmic@beats.com</a></p>
+        <p>Email: <a href="mailto:rhythmicbeats98@gmail.com" style="color:#00d4ff">rhythmicbeats98@gmail.com</a></p>
     </div>
 
     <script>
@@ -42,9 +42,12 @@
         function show(id) { document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); document.getElementById(id).style.display = 'block'; }
         function rate(stars) { alert('Rated ' + stars + ' stars!'); }
         function react(btn) { btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
+        
         const container = document.getElementById('shorts-container');
         videos.sort((a, b) => new Date(b.date) - new Date(a.date));
-        videos.forEach(v => { container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; });
+        videos.forEach(v => { 
+            container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; 
+        });
     </script>
 </body>
 </html>
