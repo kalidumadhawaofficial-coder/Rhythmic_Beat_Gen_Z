@@ -100,7 +100,7 @@
             }
         }
         
-        // 🌟 ULTRA-STABLE TIKTOK SMART CARD LOADER (100% ERROR PROOF)
+        // 🌟 ULTRA-STABLE TIKTOK & KO-FI INTEGRATED LOADER
         async function loadTikTokHub() {
             try {
                 const response = await fetch(TIKTOK_GIST_URL + "?nocache=" + new Date().getTime());
@@ -111,15 +111,32 @@
                 videos.sort((a, b) => new Date(b.date) - new Date(a.date));
                 
                 videos.forEach(v => {
-                    // TikTok වීඩියෝ එකේ ID එකෙන් ලස්සන Custom Cyberpunk Card එකක් මෙතනින් හැදෙනවා
+                    // Ko-Fi embedding iframe ලොජික් එක (Gist එකේ kofi ලින්ක් එක තිබ්බොත් විතරක් ප්ලේයර් එක හැදෙනවා)
+                    let kofiPlayer = '';
+                    if(v.kofi) {
+                        // Ko-Fi page ලින්ක් එක embed widget ලින්ක් එකක් බවට ස්වයංක්‍රීයව හරවනවා
+                        let embedUrl = v.kofi.replace('/Post/', '/Widget/');
+                        kofiPlayer = `
+                            <div style="width:100%; margin-top:15px; border-radius:10px; overflow:hidden; background:#1a1a26; padding:10px; box-sizing:border-box;">
+                                <iframe id="kofiframe" src="${embedUrl}?src=feedEmbed" style="border:none; width:100%; padding:4px; background:#1a1a26; height:400px;" title="rhythmicbeats"></iframe>
+                            </div>`;
+                    }
+
+                    // TikTok කාඩ් එක සහ ඒකට යටින් සිරස්ව (Vertically) ක්‍රියාත්මක වන Ko-Fi ප්ලේයර් එක
                     container.innerHTML += `
                         <div class="video-card" style="padding: 20px; background: #11111a; border: 1px solid rgba(0, 212, 255, 0.1); border-radius: 16px; margin-bottom: 15px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; box-shadow: 0 8px 25px rgba(0,0,0,0.5);">
                             <i class="fa-brands fa-tiktok" style="font-size: 3.5rem; color: #ff007f; margin-bottom: 15px; text-shadow: 0 0 15px rgba(255, 0, 127, 0.4);"></i>
                             <h3 style="color: #ffffff; font-size: 1.1rem; margin-bottom: 5px; font-weight: 700; letter-spacing: 0.5px;">RHYTHMIC TIKTOK BEAT</h3>
                             <p style="color: #64748b; font-size: 0.75rem; margin-bottom: 20px; text-transform: uppercase;">Operate In Silence</p>
-                            <a href="https://www.tiktok.com/@rythemic_beats_gen_z/video/${v.id}" target="_blank" class="neon-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(45deg, #00f2fe, #4facfe); color: #000000; padding: 12px 25px; border-radius: 25px; font-weight: 800; font-size: 0.85rem; letter-spacing: 1px; box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); transition: transform 0.2s;">
+                            
+                            <!-- TikTok Button -->
+                            <a href="https://www.tiktok.com/@rythemic_beats_gen_z/video/${v.id}" target="_blank" class="neon-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(45deg, #00f2fe, #4facfe); color: #000000; padding: 12px 25px; border-radius: 25px; font-weight: 800; font-size: 0.85rem; letter-spacing: 1px; box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); transition: transform 0.2s; width:80%; justify-content:center;">
                                 <i class="fa-solid fa-play"></i> WATCH ON TIKTOK
                             </a>
+
+                            <!-- Vertical Ko-Fi Embedded Audio/Post Player -->
+                            ${kofiPlayer}
+
                             <div class="reactions" style="margin-top: 18px; width: 100%; display: flex; justify-content: center; gap: 10px;">
                                 <button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button>
                             </div>
